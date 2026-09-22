@@ -61,24 +61,18 @@ Most of the work here is joining existing modules. These are the parts used in t
 
 | Qty | Part | Purpose and selection notes |
 | ---: | --- | --- |
-| 1 | [BTECH QHM22D dual-PTT speaker microphone](https://baofengtech.com/product/qhm22d/) · [Amazon](https://www.amazon.com/dp/B085HG7RX8) | Kenwood K1-style two-plug connector, speaker, microphone, and two buttons. Tested handset for this build; follow the [BTECH-specific wiring tests and repair instructions](docs/btech-qhm22d.md) before use. |
+| 1 | K1 Speaker Mic (e.g., [BTECH QHM22D dual-PTT speaker microphone](https://baofengtech.com/product/qhm22d/) · [Amazon](https://www.amazon.com/dp/B085HG7RX8)) | Kenwood K1-style two-plug connector, speaker, microphone, and two buttons. Tested handset for this build; follow the [BTECH-specific wiring tests and repair instructions](docs/btech-qhm22d.md) before use. |
 | 1 | [Adafruit KB2040, product 5302](https://www.adafruit.com/product/5302) | RP2040 board for USB HID keyboard events. The supplied firmware uses its `D2`, `D3`, and `BUTTON` names. |
 | 1 | [Adafruit CH334F Mini 2-Port USB Hub Breakout, product 5999](https://www.adafruit.com/product/5999) | Connects sound card and KB2040 to one upstream USB cable. Downstream connections are solder pads. |
 | 1 | USB audio adapter with separate microphone and headphone jacks · [documented reference: Adafruit 1475](https://www.adafruit.com/product/1475) | Needs a microphone input suitable for an electret mic, including mic bias, and a ground-referenced headphone/line output. The exact SKU of the cabled adapter in the photos is unrecorded; do not assume its jack wiring from its appearance. |
 | 1 | [LM386 audio amplifier module](https://protosupplies.com/product/lm386-audio-amplifier-module/) | The documented blue module has an input level trimmer and an output coupling capacitor. Use the ground-referenced output described below. The prototype had its gain-setting **R1 removed**. |
 | 2 | 10 kΩ resistors | One pull-up from each PTT input to the KB2040's regulated **3.3 V** output. Ordinary ¼ W resistors are sufficient. |
 | 1 | [Adafruit Perma-Proto Quarter-sized Breadboard PCB, product 589](https://www.adafruit.com/product/589) | Carries the audio/PTT junctions and two resistors. One board is needed; the linked product is a pack of three. |
-
-### Connectors and mounting
-
-| Qty | Part | What to check |
-| ---: | --- | --- |
-| 1 set | K1-compatible female breakout, or separate **3.5 mm TRS** and **2.5 mm** sockets/pigtails | Must expose all five used contacts. A mono 3.5 mm socket loses the second PTT or mic contact. Separate flying sockets avoid fixed-spacing problems with the molded K1 plug. |
-| 2 | Short 3.5 mm male audio pigtails/breakouts | One for sound-card mic input; one for headphone output. Identify their conductors with a meter. |
-| 1 | Short USB-C data pigtail for the KB2040 | Connect its USB power/data to a hub downstream port. Using the USB-C socket preserves the board's normal power-entry path. |
-| 1 | USB connection for the sound card | A female USB-A pigtail if retaining a USB-A dongle, or the adapter's existing USB cable if deliberately shortened. |
+| 1 | One female **3.5 mm TRS** pigtail [Amazon](https://www.amazon.com/dp/B0C694NKJM) | Must expose all three contacts. If pigtails are not available, simply cut a short 3.5 mm extension cable and strip its wires. |
+| 1 | One female **2.5 mm TRS** pigtail [Amazon](https://www.amazon.com/dp/B09V15J2MH) | Ditto from above. Cut an audio extension cable if pigtails are not available. |
+| 2 | Short 3.5 mm male audio pigtails/breakouts [Amazon](https://www.amazon.com/dp/B0DMM3YFY1) | One for sound-card mic input; one for headphone output. This can be the other end of an extension cable if you cut one. |
 | 1 | Upstream USB **data** cable | Computer to the hub's USB-C socket; choose the computer-end connector you need. |
-| As needed | Insulated hookup wire, heat-shrink, solder, cable ties, standoffs, screws | Keep USB data wiring short and paired. Insulate exposed connections and provide cable strain relief. |
+| As needed | heat-shrink, solder, cable ties, standoffs, screws | Keep USB data wiring short and paired. Insulate exposed connections and provide cable strain relief. |
 | 1 | Nonconductive project box and mounting plate | Size around your assembled modules, plug bodies, cable bends, and lid clearance. See [enclosure notes](docs/enclosure.md). |
 
 The original diagram also shows an optional 9 V amplifier supply. **The instructions below use USB 5 V throughout.** A boost converter is unnecessary for the basic build; the prototype's 5 V/9 V comparison did not show a useful improvement for voice. Never feed 9 V into USB power, the KB2040, or a PTT input.
