@@ -12,11 +12,7 @@ It also makes a satisfying physical interface for [Claude Code `/voice`](#claude
 
 ## What's in the box?
 
-The useful trick is to let ordinary USB devices do most of the work. A USB sound card handles microphone input and audio output. An LM386 module gives the little speaker enough drive to be heard. An Adafruit KB2040 running CircuitPython watches the two PTT buttons and presents them to the computer as keyboard keys. A tiny USB hub brings the audio and keyboard devices out through one cable.
-
-The audio never passes through the microcontroller, so there's no audio streaming firmware to write. The KB2040 has a much smaller job: debounce two switches, press the configured keys, and release them when you let go. The supplied firmware sends **F13** from the main button and **Ctrl+Space** from the secondary button; both bindings are editable.
-
-This is a hand-wired build made from modules and a small prototyping board. You can build it without designing a PCB. The wiring diagrams, firmware, and steps are below; the photographed enclosure's CAD files aren't included, but a suitably sized project box will do.
+The useful trick is to let ordinary USB devices do most of the work. A USB sound card handles microphone input and audio output. An LM386 module gives the little speaker enough drive to be heard. An Adafruit KB2040 running CircuitPython watches the two PTT buttons and presents them to the computer as keyboard keys. A tiny USB hub brings the audio and keyboard devices out through one cable. The supplied firmware sends **F13** from the main button and **Ctrl+Space** from the secondary button; both bindings are editable.
 
 ## The bits that needed sorting out
 
