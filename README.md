@@ -1,21 +1,37 @@
-# USB PTT Handset
+# USB K1 Speaker-Mic Adapter
 
-Turn a two-way-radio speaker microphone into a USB microphone, amplified speaker, and two programmable push-to-talk buttons. One USB cable connects the whole thing to your computer.
+A shoulder mic, a handful of breakout boards, and one USB cable. This adapter turns a Kenwood-style K1 radio speaker mic into a USB microphone, an amplified speaker, and two programmable push-to-talk buttons.
 
-Built for [Cabin Fever x86](https://github.com/afourney/cabin-fever-x86), a conversational text-adventure game played over a radio. Also useful anywhere a physical push-to-talk button and a proper shoulder mic make more sense than another keyboard shortcut, such as [Claude Code `/voice`](#claude-code) or [Teams](#microsoft-teams).
+The excuse for building it was [Cabin Fever x86](https://github.com/afourney/cabin-fever-x86), a conversational text-adventure game played over a radio. If you're going to talk someone through an old text adventure, a proper shoulder mic feels like the right hardware. Squeeze the button, say your piece, and hear the reply through the same handset.
+
+It also makes a satisfying physical interface for [Claude Code `/voice`](#claude-code) or [Teams](#microsoft-teams). Asking an agent to fix your code over a radio is optional. Saying “over” is between you and the transcription service.
 
 ![The finished adapter and BTECH speaker mic running Cabin Fever x86](docs/images/cabin-fever-demo.jpg)
 
-*The finished adapter with a BTECH QHM22D running Cabin Fever x86. See the [BTECH-specific instructions](docs/btech-qhm22d.md) for this speaker mic.*
+*Ready to talk: the adapter and a BTECH QHM22D running Cabin Fever x86. Building with this mic? Read the [BTECH-specific wiring checks](docs/btech-qhm22d.md) first.*
 
-The adapter combines a USB sound card, an LM386 speaker amplifier, and an Adafruit KB2040 running CircuitPython. A tiny USB hub connects the audio and keyboard devices. The microphone audio never passes through the KB2040; the microcontroller only handles the buttons.
+## What's in the box?
 
-**This guide documents the hand-wired, module-based build shown in the photos.** It includes the original wiring diagram and current firmware. No custom PCB is required. The photographed enclosure's CAD/STL files are not included; a suitably sized project box works too.
+The useful trick is to let ordinary USB devices do most of the work. A USB sound card handles microphone input and audio output. An LM386 module gives the little speaker enough drive to be heard. An Adafruit KB2040 running CircuitPython watches the two PTT buttons and presents them to the computer as keyboard keys. A tiny USB hub brings the audio and keyboard devices out through one cable.
 
-> **Using the BTECH QHM22D shown here?** Read its [special wiring-test and repair instructions](docs/btech-qhm22d.md) before connecting it.
+The audio never passes through the microcontroller, so there's no audio streaming firmware to write. The KB2040 has a much smaller job: debounce two switches, press the configured keys, and release them when you let go. The supplied firmware sends **F13** from the main button and **Ctrl+Space** from the secondary button; both bindings are editable.
+
+This is a hand-wired build made from modules and a small prototyping board. You can build it without designing a PCB. The wiring diagrams, firmware, and steps are below; the photographed enclosure's CAD files aren't included, but a suitably sized project box will do.
+
+## The bits that needed sorting out
+
+The speaker was much too quiet when connected directly to the USB sound card. Adding the LM386 fixed that, but the module's roughly 200× gain was more than this source needed. Removing its gain-setting resistor made the level adjustment more useful. The result works well for speech, though music can still drive it into clipping. Trying 9 V in place of 5 V brought little benefit for voice, so the build runs from USB power.
+
+The connector has its own trap: **the sleeve of the 3.5 mm plug is a PTT input**. Common ground is on the 2.5 mm sleeve. It's worth putting the meter on those contacts before reaching for the soldering iron. The [pinout below](#k1-accessory-pinout) also shows how UV-82-compatible accessories squeeze in a second PTT button.
+
+The BTECH QHM22D used here added one more detour: two cable wires were reversed inside the mic. Its tests, before-and-after photos, and repair are on a [separate page](docs/btech-qhm22d.md), since that particular adventure belongs to the handset rather than the adapter.
+
+Ready to build one? Start with the parts below. If yours is already wired, jump to [firmware setup](#6-install-circuitpython-and-the-firmware) or [application setup](#using-it-with-applications).
 
 ## Contents
 
+- [What's in the box?](#whats-in-the-box)
+- [The bits that needed sorting out](#the-bits-that-needed-sorting-out)
 - [Parts and tools](#parts-and-tools)
 - [Wiring diagram and pinout](#wiring-diagram-and-pinout)
 - [1. Check the speaker mic](#1-check-the-speaker-mic)
@@ -28,13 +44,12 @@ The adapter combines a USB sound card, an LM386 speaker amplifier, and an Adafru
 - [8. Mount it in an enclosure](#8-mount-it-in-an-enclosure)
 - [Using it with applications](#using-it-with-applications)
 - [Troubleshooting](#troubleshooting)
-- [References and repository contents](#references-and-repository-contents)
 
 ## Parts and tools
 
 ### Electronics
 
-Links identify the documented parts or a suitable reference part, not a guarantee that a current shipment has the same board revision. Match the electrical requirements when substituting.
+Most of the work here is joining existing modules. These are the parts used in the documented build, with a reference part where the exact SKU wasn't recorded. Substitutions are fine if the electrical requirements match; check the board revision before copying a modification.
 
 | Qty | Part | Purpose and selection notes |
 | ---: | --- | --- |
@@ -102,6 +117,8 @@ With the handset disconnected from all equipment, identify its contacts using th
 
 ## 2. Prepare the cables and connector breakout
 
+Start with the meter and a few wire labels. Getting the five K1 connections identified now saves tracing them through a box full of boards later.
+
 1. Plug the handset into the unpowered mating sockets. Check that both plugs seat fully; a partly inserted plug can join the wrong contacts.
 2. Use continuity measurements to map every socket lug or pigtail wire to its plug contact. If a socket has switching contacts, identify the lug connected to the inserted plug, not its normally closed switch lug.
 3. Label the five wires `SPK`, `GND`, `MIC`, `PTT1`, and `PTT2` using the pinout table above. Insulate unused contacts.
@@ -112,7 +129,7 @@ The K1 **3.5 mm ring** connects to the sound card's **microphone signal input**.
 
 ## 3. Assemble the USB and power connections
 
-Keep power disconnected while soldering. The hub's upstream port goes to the computer; its two downstream ports go to the sound card and KB2040.
+The hub is what makes this a one-cable peripheral. Its upstream port goes to the computer; its two downstream ports go to the sound card and KB2040. Keep power disconnected while soldering.
 
 | From | To |
 | --- | --- |
@@ -155,6 +172,8 @@ The [TI LM386 datasheet](https://www.ti.com/lit/ds/symlink/lm386.pdf) explains t
 
 ## 5. Wire the two PTT inputs
 
+Each button pulls a GPIO to ground. A separate pull-up resistor holds each input high when the button is released; CircuitPython turns those changes into keyboard events.
+
 1. Connect K1 **3.5 mm sleeve → KB2040 pad 2** (`board.D2`).
 2. Connect K1 **3.5 mm tip → KB2040 pad 3** (`board.D3`).
 3. Fit a **10 kΩ resistor from pad 2 to `3V`**.
@@ -170,6 +189,8 @@ With power applied after inspection, each released PTT input should measure near
 The build photo shows the LM386 at the top, the prototyping board in the middle, the KB2040 and USB hub below, and the separate USB audio adapter to the right. Follow the schematic and contact labels rather than copying wire colours from this overview.
 
 ## 6. Install CircuitPython and the firmware
+
+Once CircuitPython is installed, changing what the buttons do is a text-file edit. The first flash takes a few more steps:
 
 1. Download the stable [CircuitPython UF2 for **Adafruit KB2040**](https://circuitpython.org/board/adafruit_kb2040/).
 2. With the board unplugged, hold **BOOT** while connecting its USB data cable. Release BOOT when the `RPI-RP2` drive appears. If the board is already wired to the hub, use that connection instead of a second USB cable.
@@ -205,6 +226,8 @@ Change a binding near the top of the file to suit your app, for example `PTT2_KE
 
 ## 7. Test the complete adapter
 
+Bring up the buttons and audio separately before involving an application. That keeps a terminal keybinding problem from sending you back to the soldering iron.
+
 ### Buttons first
 
 1. Open the [W3C Keyboard Event Viewer](https://w3c.github.io/uievents/tools/key-event-viewer.html) and focus its input.
@@ -229,7 +252,7 @@ This adapter supplies audio endpoints and keyboard events. **The HID firmware do
 
 ## 8. Mount it in an enclosure
 
-Test the complete assembly before closing the box. Mount each board on an insulating plate or standoffs, secure the audio adapter, and strain-relieve the USB and K1 cables. Leave room for the plug bodies and access to the amplifier trimmer and KB2040 reset/BOOT buttons. Keep solder joints clear of screws and the lid.
+The last component is a box to keep the wiring from becoming a desk ornament. Test the complete assembly before closing it up. Mount each board on an insulating plate or standoffs, secure the audio adapter, and strain-relieve the USB and K1 cables. Leave room for the plug bodies and access to the amplifier trimmer and KB2040 reset/BOOT buttons. Keep solder joints clear of screws and the lid.
 
 | Open enclosure | Finished cable entry |
 | --- | --- |
@@ -239,7 +262,7 @@ See [enclosure and mounting notes](docs/enclosure.md) for fitting a project box.
 
 ## Using it with applications
 
-Choose the USB sound card for audio, then configure the PTT key separately. A working mic input does not imply that an application recognizes F13 or Ctrl+Space.
+At this point the computer sees audio hardware and a keyboard. Choose the USB sound card for audio, then tell the application what its PTT key should do. The application decides when to listen; the adapter supplies the sound and button presses.
 
 ### Cabin Fever x86
 
