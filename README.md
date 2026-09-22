@@ -303,20 +303,3 @@ Select the USB mic and speaker in Teams, then check the installed client's keybo
 | Firmware import error | Install the matching `adafruit_hid` folder under `CIRCUITPY/lib/`. |
 | Keys work in a browser but not Claude Code | Check terminal key translation/interception and Claude Code's active binding. |
 | Serial console is blank or PuTTY beeps | Follow [serial-console setup](docs/serial-console.md), including selecting Serial on the Session page. |
-
-## References and repository contents
-
-| File | Purpose |
-| --- | --- |
-| [README.md](README.md) | Adapter build, setup, and test guide |
-| [firmware/code.py](firmware/code.py) | Current CircuitPython firmware: F13 / Ctrl+Space, external pull-ups |
-| [hardware/speaker-mic-converter.svg](hardware/speaker-mic-converter.svg) | Original editable functional wiring diagram |
-| [hardware/speaker-mic-converter.png](hardware/speaker-mic-converter.png) | Original raster export for inline viewing |
-| [K1 accessory pinout PNG](hardware/k1-accessory-pinout.png) / [editable SVG](hardware/k1-accessory-pinout.svg) | General accessory wiring with optional secondary PTT highlighted in cyan; adapted artwork, CC BY-SA 3.0 |
-| [docs/btech-qhm22d.md](docs/btech-qhm22d.md) | BTECH-specific resistance tests, probe diagrams, repair photos, and supporting reports |
-| [docs/serial-console.md](docs/serial-console.md) | Windows serial logging and firmware troubleshooting |
-| [docs/enclosure.md](docs/enclosure.md) | Mounting guidance and current CAD availability |
-| [docs/references.md](docs/references.md) | Source links and what each establishes |
-| [docs/maintainer-notes.md](docs/maintainer-notes.md) | Provenance, validation scope, and remaining release details |
-
-Build and original photographs: **Adam Fourney**. The Amazon screenshot is intentionally excluded. The project documents a working prototype; reproducing it still requires checking your own module revisions, connector wiring, and application behavior.
