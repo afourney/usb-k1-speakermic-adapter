@@ -62,6 +62,16 @@ On the blue module used in this build, **R1 is a 0 Ω jumper in that gain-boost 
 
 The onboard trimmer still adjusts the input level. Start with it turned down and raise it while playing speech. Reducing gain makes the adjustment more usable, but it doesn't increase the amplifier's maximum output power or make clipping impossible. Keep the output coupling capacitor in place.
 
+## Keyboard emulation
+
+The sound card takes care of audio, but it has no way to report the handset's PTT switches to the computer. Those buttons simply close electrical contacts. A microcontroller provides the missing link: it reads the switches and presents itself to the computer as a **USB HID keyboard**.
+
+Pressing a PTT button then looks like holding a keyboard key; releasing the button releases the key. Applications can use their existing keyboard shortcuts for push-to-talk, without needing a custom interface to the handset. The audio stays on the sound card, while the microcontroller handles the buttons.
+
+The **Adafruit KB2040** was chosen for a practical wiring detail: its **USB D+ and D− signals are broken out to accessible pads beside the USB-C connector**. That makes it straightforward to wire the USB data connection directly to the internal hub without soldering onto the connector's tiny contacts. Adafruit documents these pads in the [KB2040 pinout guide](https://learn.adafruit.com/adafruit-kb2040/pinouts). The board's RP2040 also provides native USB support and more than enough inputs for the two switches.
+
+Those exposed pads give us flexibility when packaging the adapter; the assembly instructions below describe a USB-C pigtail connection. Programming the board and choosing what each button sends are covered later in [firmware setup](#6-install-circuitpython-and-the-firmware).
+
 Ready to build one? Start with the parts below. If yours is already wired, jump to [firmware setup](#6-install-circuitpython-and-the-firmware) or [application setup](#using-it-with-applications).
 
 ## Contents
@@ -69,6 +79,7 @@ Ready to build one? Start with the parts below. If yours is already wired, jump 
 - [What's in the box?](#whats-in-the-box)
 - [The K1 connector](#the-k1-connector)
 - [Amplification](#amplification)
+- [Keyboard emulation](#keyboard-emulation)
 - [Parts and tools](#parts-and-tools)
 - [Wiring diagram and pinout](#wiring-diagram-and-pinout)
 - [1. Check the speaker mic](#1-check-the-speaker-mic)
