@@ -66,7 +66,7 @@ Most of the work here is joining existing modules. These are the parts used in t
 | 2 | Short 3.5 mm male audio pigtails/breakouts [Amazon](https://www.amazon.com/dp/B0DMM3YFY1) | One for sound-card mic input; one for headphone output. This can be the other end of an extension cable if you cut one. |
 | 1 | Upstream USB **data** cable | Computer to the hub's USB-C socket; choose the computer-end connector you need. |
 | As needed | Heat-shrink, solder, cable ties, standoffs, screws | Keep USB data wiring short and paired. Insulate exposed connections and provide cable strain relief. |
-| 1 | Nonconductive project box and mounting plate | Size around your assembled modules, plug bodies, cable bends, and lid clearance. See [enclosure notes](docs/enclosure.md). |
+| 1 | Nonconductive project box and mounting plate | Print the [supplied enclosure](docs/enclosure.md#print-the-enclosure), or size a project box around your assembled modules, plug bodies, cable bends, and lid clearance. |
 
 The original diagram also shows an optional 9 V amplifier supply. **The instructions below use USB 5 V throughout.** A boost converter is unnecessary for the basic build; the prototype's 5 V/9 V comparison did not show a useful improvement for voice. Never feed 9 V into USB power, the KB2040, or a PTT input.
 
@@ -167,13 +167,13 @@ If these checks fail, use the [serial-console guide](docs/serial-console.md) to 
 
 ## Mount it in an enclosure
 
-The last component is a box to hide our wiring sins and protect the modules. Test the complete assembly before closing it up. Mount each board on an insulating plate or standoffs, secure the audio adapter, and strain-relieve the USB and K1 cables. Leave room for the plug bodies and access to the amplifier trimmer and KB2040 reset/BOOT buttons. Keep solder joints clear of screws and the lid.
+The last component is a box to hide our wiring sins and protect the modules. The [enclosure folder](enclosure) includes STLs for the body, lid, and mounting plate with standoffs, plus a [Bambu Lab P1S 3MF project](enclosure/K1%20Adapter%20Box.3mf). You can also find the enclosure on [MakerWorld](https://makerworld.com/en/models/3343715-usb-k1-speaker-mic-adapter-enclosure#profileId-3799259). Test the complete assembly before closing it up. Mount each board on an insulating plate or standoffs, secure the audio adapter, and strain-relieve the USB and K1 cables. Leave room for the plug bodies and access to the amplifier trimmer and KB2040 reset/BOOT buttons. Keep solder joints clear of screws and the lid.
 
 | Open enclosure | Finished cable entry |
 | --- | --- |
 | ![Modules mounted inside the enclosure](docs/images/enclosure-open.jpg) | ![Front opening with K1 breakout and USB cable](docs/images/enclosure-front.jpg) |
 
-See [enclosure and mounting notes](docs/enclosure.md) for fitting a project box. After mounting, repeat the button and audio tests while gently moving the cables. Nothing should disconnect, crackle, or generate a button press from cable movement.
+See [enclosure and mounting notes](docs/enclosure.md) for print settings and fitting the electronics. After mounting, repeat the button and audio tests while gently moving the cables. Nothing should disconnect, crackle, or generate a button press from cable movement.
 
 ## Using it with applications
 
