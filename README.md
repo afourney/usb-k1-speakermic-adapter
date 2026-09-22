@@ -61,7 +61,7 @@ Most of the work here is joining existing modules. These are the parts used in t
 
 | Qty | Part | Purpose and selection notes |
 | ---: | --- | --- |
-| 1 | K1 Speaker Mic (e.g., [BTECH QHM22D dual-PTT speaker microphone](https://baofengtech.com/product/qhm22d/) · [Amazon](https://www.amazon.com/dp/B085HG7RX8)) | Kenwood K1-style two-plug connector, speaker, microphone, and two buttons. Tested handset for this build; follow the [BTECH-specific wiring tests and repair instructions](docs/btech-qhm22d.md) before use. |
+| 1 | K1 Speaker Mic (e.g., [BTECH QHM22D dual-PTT speaker microphone](https://baofengtech.com/product/qhm22d/) · [Amazon](https://www.amazon.com/dp/B085HG7RX8)) | Kenwood K1-style two-plug connector, speaker, microphone, and one or two buttons. **Handset wiring can vary. [Test your handset before use!](docs/btech-qhm22d.md) ** |
 | 1 | [Adafruit KB2040, product 5302](https://www.adafruit.com/product/5302) | RP2040 board for USB HID keyboard events. The supplied firmware uses its `D2`, `D3`, and `BUTTON` names. |
 | 1 | [Adafruit CH334F Mini 2-Port USB Hub Breakout, product 5999](https://www.adafruit.com/product/5999) | Connects sound card and KB2040 to one upstream USB cable. Downstream connections are solder pads. |
 | 1 | USB audio adapter with separate microphone and headphone jacks · [documented reference: Adafruit 1475](https://www.adafruit.com/product/1475) | Needs a microphone input suitable for an electret mic, including mic bias, and a ground-referenced headphone/line output. The exact SKU of the cabled adapter in the photos is unrecorded; do not assume its jack wiring from its appearance. |
@@ -79,82 +79,33 @@ The original diagram also shows an optional 9 V amplifier supply. **The instruct
 
 You will also need a multimeter with a low-ohms range, a soldering iron and flux, cutters/strippers, small screwdrivers, and a computer for copying files and testing USB audio. Fine tweezers and desoldering braid help with the amplifier's surface-mount gain resistor.
 
-## Putting it all together
+## Assembly Tip and Gotchas
 
-With the handset disconnected from all equipment, identify its contacts using the pinout above. Check that the main PTT connects the **3.5 mm sleeve** to the **2.5 mm sleeve** when pressed and releases that connection when let go. For a UV-82-compatible dual-PTT mic, check the secondary button between the **3.5 mm tip** and **2.5 mm sleeve** as well. Use resistance readings, not just the continuity buzzer.
+### Handset wiring check
+Handsets can be wired differently. The BTECH QHM22D for example, is [often miswired](docs/btech-qhm22d.md) and needs a repair before it can be used. 
+
+# TODO: Describe testing procedure here, and include diagrams.
 
 **Using a BTECH QHM22D?** Follow the [illustrated wiring tests and repair instructions](docs/btech-qhm22d.md) before continuing. If another handset's switching differs from the pinout, trace its wiring before connecting it.
 
-## 2. Prepare the cables and connector breakout
+### USB soundcard preparation
 
-Start with the meter and a few wire labels. Getting the five K1 connections identified now saves tracing them through a box full of boards later.
+The Adafruit CH334F Mini hub does not have any sockets for the client USB devices. The sound card and KB2040 must be wired to the hub's downstream pads. To prepare the soundcard, clip the original USB cable and strip the wires. Identify the four wires by colour or continuity. In my device, the colours were red = 5 V, black = GND, green = D+, and white = D−. It is important to check your own device, as the colours are not guaranteed to be the same. Do do this, stip the wires on the connector end as well, and check continuity between the wires and the USB contacts. Use the following pinout to identify the contacts:
 
-1. Plug the handset into the unpowered mating sockets. Check that both plugs seat fully; a partly inserted plug can join the wrong contacts.
-2. Use continuity measurements to map every socket lug or pigtail wire to its plug contact. If a socket has switching contacts, identify the lug connected to the inserted plug, not its normally closed switch lug.
-3. Label the five wires `SPK`, `GND`, `MIC`, `PTT1`, and `PTT2` using the pinout table above. Insulate unused contacts.
-4. Map the two sound-card audio pigtails separately. On a conventional stereo headphone output, tip is left, ring is right, and sleeve is ground. Microphone jack conventions vary: follow your adapter's documentation or verify its input and bias arrangement with a known working microphone before cutting cables.
-5. Verify the sound card and KB2040 separately over USB before modifying any USB lead. Label the mic and speaker plugs so they cannot be exchanged during assembly.
+# TODO: Insert a diagram of the USB-A male pinout here.
 
-The K1 **3.5 mm ring** connects to the sound card's **microphone signal input**. That does not mean it necessarily connects to the ring of the sound card's own jack. Match functions, not plug positions or wire colours.
+When connecting the soudcard to the hub, keep the wires short and twisted together. Likewise when connecting the KB2040 to the hub.
 
-## 3. Assemble the USB and power connections
+### Don't mix up your positive rails!
 
-The hub is what makes this a one-cable peripheral. Its upstream port goes to the computer; its two downstream ports go to the sound card and KB2040. Keep power disconnected while soldering.
-
-| From | To |
-| --- | --- |
-| Hub downstream port 1: 5 V, D+, D−, GND | Sound-card USB: 5 V, D+, D−, GND respectively |
-| Hub downstream port 2: 5 V, D+, D−, GND | KB2040 USB-C pigtail: VBUS, D+, D−, GND respectively |
-| USB 5 V supply at the hub | LM386 module `VCC` |
-| Common GND | LM386 grounds, sound-card audio grounds, KB2040 GND, and K1 2.5 mm sleeve |
-
-1. Wire each downstream USB connection as its own four-wire connection. **D+ goes to D+ and D− to D−**; the two devices do not share a data pair.
-2. Keep each USB data pair together, short, and away from the audio input wiring. Retain the original cable's paired wiring where possible.
-3. Connect the amplifier supply and common ground. Take amplifier power from the USB 5 V supply, not the KB2040's `3V` pin.
-4. Before power-up, check for shorts between supply and ground and between neighboring pads. Capacitors may briefly charge from the meter; investigate a persistent near-zero supply-to-ground reading.
-5. With the handset still disconnected, connect the hub to the computer. Confirm that both USB devices appear, then disconnect power again before continuing.
-
-The schematic labels the KB2040 power connection functionally as “5 V.” This guide routes it through a USB-C pigtail. If reproducing direct pad wiring, consult the [KB2040 pinout](https://learn.adafruit.com/adafruit-kb2040/pinouts): `RAW`, the USB VBUS connection, and `3V` are not interchangeable labels. Never attach a second computer USB cable to the KB2040 while its hub USB data connection is attached.
-
-See also the [hub pinout](https://learn.adafruit.com/adafruit-ch334f-mini-4-port-usb-hub-breakout/pinouts), which covers both hub sizes.
-
-## 4. Wire the microphone and speaker amplifier
-
-### Microphone
-
-Connect K1 **3.5 mm ring → sound-card microphone signal** and **2.5 mm sleeve → sound-card mic ground**. Use a microphone input that supplies suitable electret bias; a line input without bias is not a drop-in substitute. The LM386 amplifies playback only—it is not a microphone preamp.
-
-### Speaker
-
-1. Connect sound-card **left output → LM386 `IN`** and output ground to the module input ground. Leave the sound-card right output unconnected and insulated. Do not short the two output channels together.
-2. Connect the LM386 module's **capacitor-coupled `OUT` → K1 2.5 mm tip** and its output ground to **K1 2.5 mm sleeve**.
-3. Start with the amplifier's level trimmer turned down. The small radio speaker needs a power amplifier: connecting this build's sound card directly produced very quiet playback.
-
-**Use the module's speaker output after its coupling capacitor, not the LM386 chip's bare output pin.** Also, do not substitute a bridge-output amplifier such as a typical PAM8403 board into this wiring: its speaker “minus” output is not common ground. This adapter relies on a grounded return shared by the audio and buttons.
+When wiring all the modules, note that all components share a common ground, but there are two positive rails: the USB 5 V and the KB2040's regulated 3.3 V. The LM386 module, USB hub and usb devices (soundcard and KB2040) are powered from the USB 5 V. On the KB2040, the 5V pin is labeled as "raw". The KB2040 board has a 3.3 V regulator that then powers the onboard RP2040 microcontroller. **The two PTT inputs are pulled up to the KB2040's 3.3 V rail, <u>not the USB 5 V.</u>**
 
 ### Reduce excessive gain
 
-As explained in [Amplification](#amplification), the documented module starts at approximately **200× gain**. With power disconnected, **desolder the 0 Ω R1 jumper and leave its pads open** to disconnect the gain-boost path and return the LM386 to **20× gain**.
+As explained above, the LM386 development board starts at approximately **200× gain**. With power disconnected, **desolder the 0 Ω R1 jumper and leave its pads open** to disconnect the gain-boost path and return the LM386 to **20× gain**. Then set the onboard trimmer pot to about 1/3 - 1/2 of it's range, and test the audio. If the sound is still harsh or distorted, reduce the trimmer further. The trimmer is not a gain control; it simply reduces the input level to the amplifier.
 
-With power disconnected, confirm the module revision and trace that R1 really is in the gain-setting path associated with LM386 pins 1 and 8 before removing it. **“R1” is a board-specific label.** Do not remove an arbitrary resistor on a different module, and do not bridge the pads after removal. Leave the output coupling capacitor in place.
 
-The [TI LM386 datasheet](https://www.ti.com/lit/ds/symlink/lm386.pdf) explains the underlying behavior: the chip has a gain of 20 with the external gain-boost network absent, and that network can raise it to 200. The onboard trimmer reduces the input level; it is not the same adjustment as changing the chip's gain. Excessive input still clips at either gain setting.
-
-## 5. Wire the two PTT inputs
-
-Each button pulls a GPIO to ground. A separate pull-up resistor holds each input high when the button is released; CircuitPython turns those changes into keyboard events.
-
-1. Connect K1 **3.5 mm sleeve → KB2040 pad 2** (`board.D2`).
-2. Connect K1 **3.5 mm tip → KB2040 pad 3** (`board.D3`).
-3. Fit a **10 kΩ resistor from pad 2 to `3V`**.
-4. Fit a **separate 10 kΩ resistor from pad 3 to `3V`**.
-5. Confirm KB2040 GND connects to the common ground / K1 2.5 mm sleeve.
-
-The `3V` pin provides regulated **3.3 V**. Do not pull the GPIOs up to USB 5 V. Board pads **2 and 3** are not **A2 and A3**.
-
-With power applied after inspection, each released PTT input should measure near 3.3 V relative to ground, dropping near 0 V when its corresponding button is held. Disconnect power again before moving any wiring. Both inputs must have a pull-up even if you only plan to use one button.
-
-## 6. Install CircuitPython and the firmware
+## Install CircuitPython and the firmware
 
 Once CircuitPython is installed, changing what the buttons do is a text-file edit. The first flash takes a few more steps:
 
@@ -184,15 +135,17 @@ LOG_CHANGES = True
 | PTT2 / D3 | Left Ctrl + Space | Releases the chord |
 | Onboard BOOT, after normal startup | F13 | Releases F13 when D2 is also released |
 
-Each input is debounced for 20 ms. The program combines the held keys, so releasing BOOT does not release F13 while PTT1 is still held. It holds keys as a keyboard would; it does not repeatedly tap them. The operating system may generate key-repeat events.
+
+Change the keyboard mapping by adjusting `PTT1_KEY` and / or `PTT2_KEY`. For example `PTT2_KEY = Keycode.SPACE` or `PTT2_KEY = Keycode.F14`. A Python tuple (e.g., `(Keycode.LEFT_CONTROL, Keycode.SPACE)`, is a chord where both buttons are pressed together. Here, pusing the button sends Ctrl followed by Space. Releasing the button releases Space first, then Ctrl. The onboard BOOT button aliases PTT1, and is useful for testing the firmware before assembly, or any handset is attached. NOTE: as usual, holding BOOT at startup enters the bootloader.
+
+Each input is debounced for 20 ms. When a PTT button is held, it holds keys as a keyboard would. The operating system may generate key-repeat events.
 
 **External pull-ups are required by the default firmware.** For a temporary test of a bare KB2040 without the resistors, set `USE_INTERNAL_PULLUPS = True` before running it; restore `False` when both external 10 kΩ resistors are installed. Otherwise unconnected inputs float and can send unintended keys.
 
-Change a binding near the top of the file to suit your app, for example `PTT2_KEY = Keycode.SPACE` or `PTT2_KEY = Keycode.F14`. A chord is a tuple, as in the default Ctrl+Space binding. The onboard BOOT alias is only for testing during normal operation; holding BOOT at startup enters the bootloader.
 
 ## 7. Test the complete adapter
 
-Bring up the buttons and audio separately before involving an application. That keeps a terminal keybinding problem from sending you back to the soldering iron.
+Now it's time to verify that the adapter works as intended. Start by checking the buttons and audio separately, then test them together with an application.
 
 ### Buttons first
 
@@ -200,25 +153,19 @@ Bring up the buttons and audio separately before involving an application. That 
 2. Hold PTT1: expect F13 down. Release it: expect F13 up. F13 does not type a visible character.
 3. Hold PTT2: expect Control and Space with Ctrl active. Release it and check that **both** keys are released.
 4. Hold both handset buttons; release them in each order. Each input should release without interfering with the other.
-5. Hold PTT1 and BOOT together, then release one. F13 should remain down until both are released.
-6. Unplug and reconnect USB. Verify the buttons recover and no key is left held.
 
-If these checks fail, use the [serial-console guide](docs/serial-console.md). Do not debug application keybindings until the underlying HID events are right.
+If these checks fail, use the [serial-console guide](docs/serial-console.md) to check CIRCUITPY's log messages for errors.
 
 ### Then audio
 
 1. Select the USB sound card as the computer's input and output device, or select it explicitly in the application. Device names vary.
-2. Record a short voice sample while holding each handset button in turn. Verify the mic signal and identify any button-dependent audio behavior before configuring software PTT.
+2. Record a short voice sample.
 3. Start playback at low computer volume and low amplifier level. Slowly raise the level while listening to speech.
 4. If the speaker sounds harsh or buzzy, turn down the computer output or amplifier input trimmer. The prototype was clear for voice but could clip on music.
-5. Because only the left output is connected, enable mono playback in the host's accessibility/audio settings when you want both channels of stereo material. Otherwise right-only content will be missing.
-6. Disable microphone monitoring / “Listen to this device” if the speaker feeds back into the microphone.
-
-This adapter supplies audio endpoints and keyboard events. **The HID firmware does not mute the USB audio device.** Verify the target application's recording/mute behavior on both press and release; do not treat the handset buttons as a guaranteed hardware privacy switch.
 
 ## 8. Mount it in an enclosure
 
-The last component is a box to keep the wiring from becoming a desk ornament. Test the complete assembly before closing it up. Mount each board on an insulating plate or standoffs, secure the audio adapter, and strain-relieve the USB and K1 cables. Leave room for the plug bodies and access to the amplifier trimmer and KB2040 reset/BOOT buttons. Keep solder joints clear of screws and the lid.
+The last component is a box to hide our wiring sins and protect the modules. Test the complete assembly before closing it up. Mount each board on an insulating plate or standoffs, secure the audio adapter, and strain-relieve the USB and K1 cables. Leave room for the plug bodies and access to the amplifier trimmer and KB2040 reset/BOOT buttons. Keep solder joints clear of screws and the lid.
 
 | Open enclosure | Finished cable entry |
 | --- | --- |
