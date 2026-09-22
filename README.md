@@ -95,8 +95,6 @@ Handsets can be wired differently. Some BTECH QHM22D units, for example, have [b
 
 *These diagrams show the BTECH QHM22D checks. If the two resistance readings are reversed, follow the [BTECH-specific repair instructions](docs/btech-qhm22d.md). Other handsets may have different speaker resistance or switching; investigate unexpected results before connecting them.*
 
-**Using a BTECH QHM22D?** Follow the [illustrated wiring tests and repair instructions](docs/btech-qhm22d.md) before continuing. If another handset's switching differs from the pinout, trace its wiring before connecting it.
-
 ### USB sound card preparation
 
 The Adafruit CH334F Mini hub does not have any sockets for the client USB devices. The sound card and KB2040 must be wired to the hub's downstream pads. With USB disconnected, prepare the sound card by clipping the original USB cable and stripping the wires. Identify the four wires by continuity; use colour only as a clue. In my device, the colours were red = 5 V, black = GND, green = D+, and white = D−. It is important to check your own device, as the colours are not guaranteed to be the same. To do this, strip the wires on the connector end as well, and check continuity between the wires and the USB contacts. Use the following pinout to identify the contacts:
