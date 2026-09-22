@@ -24,17 +24,11 @@ The K1 connector has its roots in Kenwood's two-pin speaker/microphone interface
 
 A speaker mic already contains most of what we need: a microphone, a speaker, and a physical push-to-talk switch, all brought out through that pair of plugs. The audio connections are analog, and the PTT button closes a circuit. A compatible dual-PTT mic adds a second switch, giving us two independently readable buttons.
 
-**Tip** is the end of a plug, **ring** is the middle contact between insulating bands, and **sleeve** is the contact nearest the cable. These names refer to the plugs that normally go into the radio, not an extra headphone jack on the handset. One detail worth catching early: **the 3.5 mm sleeve is a PTT input**. Common ground is on the **2.5 mm sleeve**.
-
 ### K1 accessory pinout
 
 ![K1 accessory pinout: main PTT in black, optional secondary PTT in cyan](hardware/k1-accessory-pinout.png)
 
 [Full-size PNG](hardware/k1-accessory-pinout.png) · [Editable SVG](hardware/k1-accessory-pinout.svg)
-
-The black circuit shows the usual single-button speaker-mic wiring. **Disregard the cyan paths for a single-button accessory.** Cyan adds the optional secondary PTT used by the UV-82 and compatible dual-PTT speaker mics. **PTT Main** connects to `PTT1` / `D2`; **PTT Secondary** connects to `PTT2` / `D3`. For the pictured BTECH unit's physical button mapping, see the [QHM22D instructions](docs/btech-qhm22d.md). Both switches return to the **2.5 mm sleeve**; the 2.5 mm tip remains the speaker signal. Dual PTT does not require reversing those speaker contacts.
-
-This is a general accessory reference; a particular handset's internal microphone circuit may differ. The 10 µF capacitor belongs to the reference drawing; it is not an extra component required by this adapter's build instructions. The optional secondary-PTT connection is not universal to K1 radios: for example, Kenwood's TH-F6A/TH-F7E uses the 3.5 mm tip for a supply output.
 
 **Sources and attribution:** adapted from [The (Chinese) Radio Documentation Project's original SVG](https://github.com/radiodoc/uv-5r/blob/master/assets/images/kenwood-2pin-headset.svg), published with its [UV-5R manual](https://radiodoc.github.io/uv-5r/), under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). This adaptation removes the +5 V label, adds the cyan secondary-PTT circuit, and revises the labels and captions; the adapted PNG and SVG retain that license. Dual-PTT wiring is based on [Miklor's UV-82 technical notes](https://www.miklor.com/COM/UV_Technical.php), its [labeled connector photograph](https://www.miklor.com/COM/images/dualPTT.jpg), and [Walt N3PLA's circuit diagram](https://www.miklor.com/COM/images/dualPTT-N3PLA.jpg). [Kenwood's TH-F6A/TH-F7E manual, printed page 45](https://kasc.kenwood.com/files/images/products/product_id_268/file_category_10/TH-F6A_F7E_inst.pdf#page=50), corroborates the conventional speaker, microphone, and main-PTT contacts. [BaoFeng Tech's UV-82HP manual, printed page 19](https://baofengtech.com/wp-content/uploads/2020/09/UV82HP_Manual_ReducedSize.pdf#page=26), documents upper/lower-channel PTT operation; its generic accessory drawing does not show the second switch.
 
@@ -44,33 +38,24 @@ Almost everything is already in place. The microphone can feed a suitable USB so
 
 First, the handset's **8 Ω speaker needs more drive than this USB sound card can provide directly**. It's a heavier load than a typical pair of headphones, and direct playback in this build was much too quiet. The LM386 module sits between the sound card's output and the speaker to supply the extra drive. The [amplification section below](#amplification) explains the choice of chip and the gain adjustment.
 
-Second, the computer needs a way to read the **PTT buttons**. The KB2040 watches the two switch inputs and turns presses and releases into USB keyboard events. The application can then use those keys for push-to-talk. A small USB hub joins the sound card and controller onto one cable, which also supplies the build's power.
+Second, the computer needs a way to read the **PTT buttons**. The KB2040 watches the two switch inputs and turns presses and releases into USB keyboard events. The application can then use those keys for push-to-talk. We discuss each in turn below, then bring it all together in the assembly instructions. 
 
-For the BTECH QHM22D shown in the photos, check the [model-specific wiring tests and repair instructions](docs/btech-qhm22d.md) before connecting it. The unit used here arrived with two cable wires reversed; that repair belongs to the handset, not the general K1 interface.
 
 ## Amplification
 
-The **LM386** fits this build because it can drive a speaker with one side connected to **common ground**. The K1 handset shares that return between its speaker and PTT switches, so the amplifier needs to preserve it. The module's output coupling capacitor blocks the DC bias at the chip's output; the other speaker lead stays connected to ground.
-
-That rules out a direct swap with a typical bridge-output module such as a PAM8403 board. Those amplifiers actively drive both speaker terminals: the terminal marked “−” is another output, not ground. Connecting it to the handset's shared return would short an amplifier output to ground.
+The **LM386** fits this build because it can drive a speaker with one side connected to **common ground**. The K1 handset shares that return between its speaker and PTT switches, so the amplifier needs to preserve it. That rules out a direct swap with a typical bridge-output module such as a PAM8403 board. Those amplifiers actively drive both speaker terminals: the terminal marked “−” is another output, not ground. Connecting it to the handset's shared return would short an amplifier output to ground.
 
 ### Bringing the gain down
 
-The LM386 development boards used here come configured for approximately **200× voltage gain**. That's more than we need from a USB sound card, and makes it easy to overdrive the amplifier. The LM386's default gain is **20×**; the board raises it with an external network between pins 1 and 8. See the [TI LM386 datasheet's gain-control section](https://www.ti.com/lit/ds/symlink/lm386.pdf#page=10).
-
-On the blue module used in this build, **R1 is a 0 Ω jumper in that gain-boost path**. With power disconnected, **desolder R1 and leave its pads open**. This disconnects the boost network and returns the gain to **20×**. Do not bridge the pads afterward—that would restore the connection you just removed. Check the board revision and trace R1 to the gain network before modifying a substitute module; component labels are not universal.
-
-The onboard trimmer still adjusts the input level. Start with it turned down and raise it while playing speech. Reducing gain makes the adjustment more usable, but it doesn't increase the amplifier's maximum output power or make clipping impossible. Keep the output coupling capacitor in place.
+The LM386 development boards used here come configured for approximately **200× voltage gain**. That's more than we need from a USB sound card, and makes it easy to overdrive the amplifier. The LM386's default gain is **20×**; the board raises it with an external network between pins 1 and 8. See the [TI LM386 datasheet's gain-control section](https://www.ti.com/lit/ds/symlink/lm386.pdf#page=10). On the blue module used in this build, pin 1 and 8 are bridged by R1, a 0 Ω jumper. With power disconnected, **desolder R1 and leave its pads open**. This disconnects the boost network and returns the gain to **20×**. Check the board revision before modifcation since component labels are not universal.
 
 ## Keyboard emulation
 
-The sound card takes care of audio, but it has no way to report the handset's PTT switches to the computer. Those buttons simply close electrical contacts. A microcontroller provides the missing link: it reads the switches and presents itself to the computer as a **USB HID keyboard**.
+The sound card takes care of audio, but it has no way to report the handset's PTT switches to the computer. Those buttons simply close electrical contacts. A microcontroller provides the missing link: it reads the switches and presents itself to the computer as a **USB HID keyboard**. Programming the board and choosing what each button sends are covered later in [firmware setup](#6-install-circuitpython-and-the-firmware).
 
 Pressing a PTT button then looks like holding a keyboard key; releasing the button releases the key. Applications can use their existing keyboard shortcuts for push-to-talk, without needing a custom interface to the handset. The audio stays on the sound card, while the microcontroller handles the buttons.
 
 The **Adafruit KB2040** was chosen for a practical wiring detail: its **USB D+ and D− signals are broken out to accessible pads beside the USB-C connector**. That makes it straightforward to wire the USB data connection directly to the internal hub without soldering onto the connector's tiny contacts. Adafruit documents these pads in the [KB2040 pinout guide](https://learn.adafruit.com/adafruit-kb2040/pinouts). The board's RP2040 also provides native USB support and more than enough inputs for the two switches.
-
-Those exposed pads give us flexibility when packaging the adapter; the assembly instructions below describe a USB-C pigtail connection. Programming the board and choosing what each button sends are covered later in [firmware setup](#6-install-circuitpython-and-the-firmware).
 
 Ready to build one? Start with the parts below. If yours is already wired, jump to [firmware setup](#6-install-circuitpython-and-the-firmware) or [application setup](#using-it-with-applications).
 
