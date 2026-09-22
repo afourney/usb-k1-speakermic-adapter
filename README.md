@@ -167,7 +167,7 @@ If these checks fail, use the [serial-console guide](docs/serial-console.md) to 
 
 ## Mount it in an enclosure
 
-The last component is a box to hide our wiring sins and protect the modules. The [enclosure folder](enclosure) includes STLs for the body, lid, and mounting plate with standoffs, plus a [Bambu Lab P1S 3MF project](enclosure/K1%20Adapter%20Box.3mf). Test the complete assembly before closing it up. Mount each board on an insulating plate or standoffs, secure the audio adapter, and strain-relieve the USB and K1 cables. Leave room for the plug bodies and access to the amplifier trimmer and KB2040 reset/BOOT buttons. Keep solder joints clear of screws and the lid.
+The last component is a box to hide our wiring sins and protect the modules. The [enclosure folder](enclosure) includes STLs for the body, lid, and mounting plate with standoffs, plus a [Bambu Lab P1S 3MF project](enclosure/K1%20Adapter%20Box.3mf). You can also find the enclosure on [MakerWorld](https://makerworld.com/en/models/3343715-usb-k1-speaker-mic-adapter-enclosure#profileId-3799259). Test the complete assembly before closing it up. Mount each board on an insulating plate or standoffs, secure the audio adapter, and strain-relieve the USB and K1 cables. Leave room for the plug bodies and access to the amplifier trimmer and KB2040 reset/BOOT buttons. Keep solder joints clear of screws and the lid.
 
 | Open enclosure | Finished cable entry |
 | --- | --- |
