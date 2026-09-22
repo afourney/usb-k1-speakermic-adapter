@@ -255,3 +255,9 @@ Select the USB mic and speaker in Teams, then check the installed client's keybo
 - [Walt N3PLA's circuit diagram](https://www.miklor.com/COM/images/dualPTT-N3PLA.jpg) — Circuit reference for the added secondary-PTT wiring.
 - [Kenwood's TH-F6A/TH-F7E manual, printed page 45](https://kasc.kenwood.com/files/images/products/product_id_268/file_category_10/TH-F6A_F7E_inst.pdf#page=50) — Corroborates the conventional speaker, microphone, and main-PTT contacts.
 - [BaoFeng Tech's UV-82HP manual, printed page 19](https://baofengtech.com/wp-content/uploads/2020/09/UV82HP_Manual_ReducedSize.pdf#page=26) — Documents upper/lower-channel PTT operation; its generic accessory drawing does not show the second switch.
+
+## Copyright and license
+
+Copyright © 2026 Adam Fourney.
+
+Licensed under the [MIT License](LICENSE), except for the adapted K1 accessory diagram, which retains its CC BY-SA 3.0 license as noted above. Please retain the copyright and license notices when redistributing this work.
