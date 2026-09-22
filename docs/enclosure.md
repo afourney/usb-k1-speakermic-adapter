@@ -2,7 +2,7 @@
 
 [Back to the build guide](../README.md)
 
-The prototype uses a rectangular enclosure with a removable lid and an internal mounting plate. The K1 female pigtails and upstream USB cable leave through the front opening. Print files are now included in the [enclosure folder](../enclosure).
+The prototype uses a rectangular enclosure with a removable lid and an internal mounting plate. The K1 female pigtails and upstream USB cable leave through the front opening. Print files are included in the [enclosure folder](../enclosure).
 
 <img src="images/finished-handset.jpg" alt="Complete handset, adapter enclosure, and USB cable" width="600">
 
