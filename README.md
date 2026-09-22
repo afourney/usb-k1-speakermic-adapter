@@ -6,25 +6,26 @@ Built for [Cabin Fever x86](https://github.com/afourney/cabin-fever-x86), a conv
 
 ![The finished adapter and BTECH speaker mic running Cabin Fever x86](docs/images/cabin-fever-demo.jpg)
 
+*The finished adapter with a BTECH QHM22D running Cabin Fever x86. See the [BTECH-specific instructions](docs/btech-qhm22d.md) for this speaker mic.*
+
 The adapter combines a USB sound card, an LM386 speaker amplifier, and an Adafruit KB2040 running CircuitPython. A tiny USB hub connects the audio and keyboard devices. The microphone audio never passes through the KB2040; the microcontroller only handles the buttons.
 
 **This guide documents the hand-wired, module-based build shown in the photos.** It includes the original wiring diagram and current firmware. No custom PCB is required. The photographed enclosure's CAD/STL files are not included; a suitably sized project box works too.
 
-> **Check the BTECH wiring before connecting it.** The QHM22D used in this build arrived with its yellow and brown speaker wires reversed. That can put speaker audio on the PTT return. [Step 1](#1-test-the-speaker-mic-before-building) explains how to detect it with a multimeter and repair it. Do not swap wires on a unit that already passes the test.
+> **Using the BTECH QHM22D shown here?** Read its [special wiring-test and repair instructions](docs/btech-qhm22d.md) before connecting it.
 
 ## Contents
 
 - [Parts and tools](#parts-and-tools)
 - [Wiring diagram and pinout](#wiring-diagram-and-pinout)
-- [1. Test the speaker mic before building](#1-test-the-speaker-mic-before-building)
-- [2. Repair the yellow/brown reversal, if present](#2-repair-the-yellowbrown-reversal-if-present)
-- [3. Prepare the cables and connector breakout](#3-prepare-the-cables-and-connector-breakout)
-- [4. Assemble the USB and power connections](#4-assemble-the-usb-and-power-connections)
-- [5. Wire the microphone and speaker amplifier](#5-wire-the-microphone-and-speaker-amplifier)
-- [6. Wire the two PTT inputs](#6-wire-the-two-ptt-inputs)
-- [7. Install CircuitPython and the firmware](#7-install-circuitpython-and-the-firmware)
-- [8. Test the complete adapter](#8-test-the-complete-adapter)
-- [9. Mount it in an enclosure](#9-mount-it-in-an-enclosure)
+- [1. Check the speaker mic](#1-check-the-speaker-mic)
+- [2. Prepare the cables and connector breakout](#2-prepare-the-cables-and-connector-breakout)
+- [3. Assemble the USB and power connections](#3-assemble-the-usb-and-power-connections)
+- [4. Wire the microphone and speaker amplifier](#4-wire-the-microphone-and-speaker-amplifier)
+- [5. Wire the two PTT inputs](#5-wire-the-two-ptt-inputs)
+- [6. Install CircuitPython and the firmware](#6-install-circuitpython-and-the-firmware)
+- [7. Test the complete adapter](#7-test-the-complete-adapter)
+- [8. Mount it in an enclosure](#8-mount-it-in-an-enclosure)
 - [Using it with applications](#using-it-with-applications)
 - [Troubleshooting](#troubleshooting)
 - [References and repository contents](#references-and-repository-contents)
@@ -37,7 +38,7 @@ Links identify the documented parts or a suitable reference part, not a guarante
 
 | Qty | Part | Purpose and selection notes |
 | ---: | --- | --- |
-| 1 | [BTECH QHM22D dual-PTT speaker microphone](https://baofengtech.com/product/qhm22d/) · [Amazon](https://www.amazon.com/dp/B085HG7RX8) | Kenwood K1-style two-plug connector, speaker, microphone, and two buttons. This guide's dual-button mapping is specific to the checked/repaired QHM22D. |
+| 1 | [BTECH QHM22D dual-PTT speaker microphone](https://baofengtech.com/product/qhm22d/) · [Amazon](https://www.amazon.com/dp/B085HG7RX8) | Kenwood K1-style two-plug connector, speaker, microphone, and two buttons. Tested handset for this build; follow the [BTECH-specific wiring tests and repair instructions](docs/btech-qhm22d.md) before use. |
 | 1 | [Adafruit KB2040, product 5302](https://www.adafruit.com/product/5302) | RP2040 board for USB HID keyboard events. The supplied firmware uses its `D2`, `D3`, and `BUTTON` names. |
 | 1 | [Adafruit CH334F Mini 2-Port USB Hub Breakout, product 5999](https://www.adafruit.com/product/5999) | Connects sound card and KB2040 to one upstream USB cable. Downstream connections are solder pads. |
 | 1 | USB audio adapter with separate microphone and headphone jacks · [documented reference: Adafruit 1475](https://www.adafruit.com/product/1475) | Needs a microphone input suitable for an electret mic, including mic bias, and a ground-referenced headphone/line output. The exact SKU of the cabled adapter in the photos is unrecorded; do not assume its jack wiring from its appearance. |
@@ -71,7 +72,7 @@ This is the original **functional wiring diagram**, not a PCB layout or a drawin
 
 **Tip** is the end of a plug, **ring** is the middle contact between insulating bands, and **sleeve** is the contact nearest the cable. The table refers to the two plugs that normally go into a radio, not the extra headphone jack on the handset.
 
-| QHM22D plug contact | Signal | Adapter connection |
+| K1 plug contact | Signal | Adapter connection |
 | --- | --- | --- |
 | 2.5 mm tip | Speaker signal | LM386 module's capacitor-coupled `OUT` |
 | 2.5 mm sleeve | Common return | Common ground |
@@ -79,7 +80,7 @@ This is the original **functional wiring diagram**, not a PCB layout or a drawin
 | 3.5 mm sleeve | PTT1, active low | KB2040 `D2` / pad **2**, plus 10 kΩ to `3V` |
 | 3.5 mm tip | PTT2, active low | KB2040 `D3` / pad **3**, plus a separate 10 kΩ to `3V` |
 
-Leave any unused 2.5 mm ring contact unconnected. **Do not ground the 3.5 mm sleeve:** in this build it is a button input. Ground comes from the **2.5 mm sleeve**. These assignments describe the repaired QHM22D; a different K1 accessory may implement its microphone or second button differently.
+Leave any unused 2.5 mm ring contact unconnected. **Do not ground the 3.5 mm sleeve:** in this build it is a button input. Ground comes from the **2.5 mm sleeve**. Verify your accessory against these assignments; microphone switching and secondary-button support can vary.
 
 ### K1 accessory pinout
 
@@ -87,76 +88,19 @@ Leave any unused 2.5 mm ring contact unconnected. **Do not ground the 3.5 mm sle
 
 [Full-size PNG](hardware/k1-accessory-pinout.png) · [Editable SVG](hardware/k1-accessory-pinout.svg)
 
-The black circuit shows the usual single-button speaker-mic wiring. **Disregard the cyan paths for a single-button accessory.** Cyan adds the optional secondary PTT used by the UV-82 and compatible dual-PTT speaker mics. On this QHM22D, **PTT Main** is the large side button (`PTT1` / `D2`), and **PTT Secondary** is the small top button (`PTT2` / `D3`). Both switches return to the **2.5 mm sleeve**; the 2.5 mm tip remains the speaker signal. Dual PTT does not require reversing those speaker contacts.
+The black circuit shows the usual single-button speaker-mic wiring. **Disregard the cyan paths for a single-button accessory.** Cyan adds the optional secondary PTT used by the UV-82 and compatible dual-PTT speaker mics. **PTT Main** connects to `PTT1` / `D2`; **PTT Secondary** connects to `PTT2` / `D3`. For the pictured BTECH unit's physical button mapping, see the [QHM22D instructions](docs/btech-qhm22d.md). Both switches return to the **2.5 mm sleeve**; the 2.5 mm tip remains the speaker signal. Dual PTT does not require reversing those speaker contacts.
 
-This is an accessory reference, not an exact schematic of the QHM22D's internal microphone circuit. The 10 µF capacitor belongs to the reference drawing; it is not an extra component required by this adapter's build instructions. The optional secondary-PTT connection is not universal to K1 radios: for example, Kenwood's TH-F6A/TH-F7E uses the 3.5 mm tip for a supply output.
+This is a general accessory reference; a particular handset's internal microphone circuit may differ. The 10 µF capacitor belongs to the reference drawing; it is not an extra component required by this adapter's build instructions. The optional secondary-PTT connection is not universal to K1 radios: for example, Kenwood's TH-F6A/TH-F7E uses the 3.5 mm tip for a supply output.
 
 **Sources and attribution:** adapted from [The (Chinese) Radio Documentation Project's original SVG](https://github.com/radiodoc/uv-5r/blob/master/assets/images/kenwood-2pin-headset.svg), published with its [UV-5R manual](https://radiodoc.github.io/uv-5r/), under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). This adaptation removes the +5 V label, adds the cyan secondary-PTT circuit, and revises the labels and captions; the adapted PNG and SVG retain that license. Dual-PTT wiring is based on [Miklor's UV-82 technical notes](https://www.miklor.com/COM/UV_Technical.php), its [labeled connector photograph](https://www.miklor.com/COM/images/dualPTT.jpg), and [Walt N3PLA's circuit diagram](https://www.miklor.com/COM/images/dualPTT-N3PLA.jpg). [Kenwood's TH-F6A/TH-F7E manual, printed page 45](https://kasc.kenwood.com/files/images/products/product_id_268/file_category_10/TH-F6A_F7E_inst.pdf#page=50), corroborates the conventional speaker, microphone, and main-PTT contacts. [BaoFeng Tech's UV-82HP manual, printed page 19](https://baofengtech.com/wp-content/uploads/2020/09/UV82HP_Manual_ReducedSize.pdf#page=26), documents upper/lower-channel PTT operation; its generic accessory drawing does not show the second switch.
 
-## 1. Test the speaker mic before building
+## 1. Check the speaker mic
 
-The defect is easy to miss: the internal speaker can still make sound with reversed leads. The important problem here is where the PTT switch connects, not just acoustic polarity.
+With the handset disconnected from all equipment, identify its contacts using the pinout above. Check that the main PTT connects the **3.5 mm sleeve** to the **2.5 mm sleeve** when pressed and releases that connection when let go. For a UV-82-compatible dual-PTT mic, check the secondary button between the **3.5 mm tip** and **2.5 mm sleeve** as well. Use resistance readings, not just the continuity buzzer.
 
-1. Disconnect the handset from everything: radio, adapter, USB, and any external earphones.
-2. Set the meter to resistance, preferably its lowest useful range. Touch the probes together and note the lead resistance.
-3. Identify the **2.5 mm tip**, **2.5 mm sleeve**, and **3.5 mm sleeve** on the handset's radio plug.
-4. Measure between the two sleeves while holding the PTT button associated with the **3.5 mm sleeve**. On a dual-button handset, try each button separately to identify it; this guide calls that input PTT1.
-5. Keep that same button pressed and measure between the **2.5 mm tip** and **3.5 mm sleeve**.
-6. Compare the pair of readings with the table. Use actual resistance values: a continuity buzzer may beep for both 0 Ω and 8 Ω.
+**Using a BTECH QHM22D?** Follow the [illustrated wiring tests and repair instructions](docs/btech-qhm22d.md) before continuing. If another handset's switching differs from the pinout, trace its wiring before connecting it.
 
-### Test 1: sleeve to sleeve
-
-Hold PTT1. Touch the **black probe to the 3.5 mm sleeve** and the **red probe to the 2.5 mm sleeve**. A correctly wired unit reads approximately **0 Ω**; the reversed unit reads the speaker's resistance, approximately **8–9 Ω**.
-
-[![Test 1 probe placement: 3.5 mm sleeve to 2.5 mm sleeve, with correct and reversed resistance readings](hardware/testing/qhm22d-test-1.png)](hardware/testing/qhm22d-test-1.svg)
-
-### Test 2: move one probe to the tip
-
-Keep **the same PTT button held** and the **black probe on the 3.5 mm sleeve**. Move only the **red probe to the 2.5 mm tip**. The readings should exchange: approximately **8–9 Ω** when correctly wired, or approximately **0 Ω** on the reversed unit.
-
-[![Test 2 probe placement: 3.5 mm sleeve to 2.5 mm tip, with correct and reversed resistance readings](hardware/testing/qhm22d-test-2.png)](hardware/testing/qhm22d-test-2.svg)
-
-The drawings show the **radio-end plugs**, not the handset's headphone socket. Touch one exposed metal segment with each probe; avoid bridging a black insulating band. The probe colours are for clarity—either polarity works for these two resistance checks. Click either diagram to open its editable SVG.
-
-| Measurement, with PTT1 held | Correct wiring | Reversed wiring on this unit |
-| --- | --- | --- |
-| 2.5 mm **sleeve** ↔ 3.5 mm sleeve | Approximately **0 Ω** plus probe/contact resistance | Approximately **8 Ω**, through the speaker |
-| 2.5 mm **tip** ↔ 3.5 mm sleeve | Approximately **8 Ω**, through the speaker | Approximately **0 Ω** |
-
-The speaker in this build measured around **8–9 Ω**; treat that as a recognizable speaker-coil reading, not a precision acceptance limit. Swapping the meter probes does not change which test is which—the distinction is **tip versus sleeve on the 2.5 mm plug**.
-
-Release PTT1 and verify that the sleeve-to-sleeve short disappears. Also identify PTT2 by testing **3.5 mm tip ↔ 2.5 mm sleeve**: the repaired handset should change from open/high resistance to near zero when its other button is held. If the switching or resistance pattern differs substantially, trace the accessory before using this wiring plan.
-
-### Reports of the same problem
-
-- [Amazon review: “repair the factory defect and then it works great,” September 4, 2022](https://www.amazon.com/gp/customer-reviews/RETJVNP2EQFWO). The reviewer describes reversed speaker leads and loss of PTT when external headphones are connected. Amazon may require sign-in; the review's supplied screenshot was used as a reference and is not redistributed here.
-- [Independent repair report: “Comms at Home, QHM22D question”](https://www.reddit.com/r/Baofeng/comments/123nzs1/comms_at_home_qhm22d_question/). The discussion links that exact Amazon review, and the owner reports that the repair worked.
-- [Earlier first-hand symptom report](https://www.reddit.com/r/Baofeng/comments/lg8wdt/help_baofeng_qhm22d_dual_ptt_speaker_mic_stops/). The original post is deleted, so the remaining thread provides limited context; it is not proof of a particular internal fault.
-- [Adam Fourney's review on BTECH's product page](https://baofengtech.com/product/qhm22d/#reviews), September 8, 2026, records this build's resistance readings and repair. This is the same unit documented here, not an additional independent sample.
-
-These are reports about particular units, not evidence that every QHM22D is wired incorrectly.
-
-## 2. Repair the yellow/brown reversal, if present
-
-Only do this if your measurements identify the reversal. Returning a defective unit is also an option.
-
-1. With the handset completely disconnected, remove the two screws on its back.
-2. Carefully open the housing without pulling on the speaker or microphone leads. Photograph the original wiring.
-3. Locate the **lower row of cable connections** on the PCB, beside the cable entry. On the photographed board the labels read `SP−`, `SP+`, `PTTB`, `MIC+`, and `PTTA`.
-4. Desolder the **yellow** lead from `SP−` and the **brown** lead from `SP+`. Let the solder melt before lifting each wire; do not pull up a pad.
-5. Reconnect **brown to `SP−`** and **yellow to `SP+`**. Leave the adjacent green, red, and black cable wires alone. Leave the separate red/black wires to the speaker and microphone at the top of the board alone too.
-6. Inspect for solder bridges, loose strands, damaged insulation, and a secure cable entry. Wire colours can change between revisions; the labels and measurements take precedence.
-7. Repeat both PTT1 resistance measurements and the PTT2 switching check **before reconnecting anything powered**. The two PTT1 readings should now match the correct-wiring column.
-8. Refit the housing without pinching wires or disturbing its seal.
-
-| Before: factory reversal on this unit | After: corrected cable connections |
-| --- | --- |
-| ![Before repair: yellow on SP minus, brown on SP plus](docs/images/qhm22d-before.jpg) | ![After repair: brown on SP minus, yellow on SP plus](docs/images/qhm22d-after.jpg) |
-| `SP−`: yellow · `SP+`: brown | `SP−`: brown · `SP+`: yellow |
-
-Both pictures show the actual handset used in this project. The swap is on the **incoming cable pads at the bottom**, not the speaker's own two wires at the top.
-
-## 3. Prepare the cables and connector breakout
+## 2. Prepare the cables and connector breakout
 
 1. Plug the handset into the unpowered mating sockets. Check that both plugs seat fully; a partly inserted plug can join the wrong contacts.
 2. Use continuity measurements to map every socket lug or pigtail wire to its plug contact. If a socket has switching contacts, identify the lug connected to the inserted plug, not its normally closed switch lug.
@@ -166,7 +110,7 @@ Both pictures show the actual handset used in this project. The swap is on the *
 
 The K1 **3.5 mm ring** connects to the sound card's **microphone signal input**. That does not mean it necessarily connects to the ring of the sound card's own jack. Match functions, not plug positions or wire colours.
 
-## 4. Assemble the USB and power connections
+## 3. Assemble the USB and power connections
 
 Keep power disconnected while soldering. The hub's upstream port goes to the computer; its two downstream ports go to the sound card and KB2040.
 
@@ -187,7 +131,7 @@ The schematic labels the KB2040 power connection functionally as “5 V.” This
 
 See also the [hub pinout](https://learn.adafruit.com/adafruit-ch334f-mini-4-port-usb-hub-breakout/pinouts), which covers both hub sizes.
 
-## 5. Wire the microphone and speaker amplifier
+## 4. Wire the microphone and speaker amplifier
 
 ### Microphone
 
@@ -209,7 +153,7 @@ With power disconnected, confirm the module revision and trace that R1 really is
 
 The [TI LM386 datasheet](https://www.ti.com/lit/ds/symlink/lm386.pdf) explains the underlying behavior: the chip has a gain of 20 with the external gain-boost network absent, and that network can raise it to 200. The onboard trimmer reduces the input level; it is not the same adjustment as changing the chip's gain. Excessive input still clips at either gain setting.
 
-## 6. Wire the two PTT inputs
+## 5. Wire the two PTT inputs
 
 1. Connect K1 **3.5 mm sleeve → KB2040 pad 2** (`board.D2`).
 2. Connect K1 **3.5 mm tip → KB2040 pad 3** (`board.D3`).
@@ -225,7 +169,7 @@ With power applied after inspection, each released PTT input should measure near
 
 The build photo shows the LM386 at the top, the prototyping board in the middle, the KB2040 and USB hub below, and the separate USB audio adapter to the right. Follow the schematic and contact labels rather than copying wire colours from this overview.
 
-## 7. Install CircuitPython and the firmware
+## 6. Install CircuitPython and the firmware
 
 1. Download the stable [CircuitPython UF2 for **Adafruit KB2040**](https://circuitpython.org/board/adafruit_kb2040/).
 2. With the board unplugged, hold **BOOT** while connecting its USB data cable. Release BOOT when the `RPI-RP2` drive appears. If the board is already wired to the hub, use that connection instead of a second USB cable.
@@ -259,7 +203,7 @@ Each input is debounced for 20 ms. The program combines the held keys, so releas
 
 Change a binding near the top of the file to suit your app, for example `PTT2_KEY = Keycode.SPACE` or `PTT2_KEY = Keycode.F14`. A chord is a tuple, as in the default Ctrl+Space binding. The onboard BOOT alias is only for testing during normal operation; holding BOOT at startup enters the bootloader.
 
-## 8. Test the complete adapter
+## 7. Test the complete adapter
 
 ### Buttons first
 
@@ -283,7 +227,7 @@ If these checks fail, use the [serial-console guide](docs/serial-console.md). Do
 
 This adapter supplies audio endpoints and keyboard events. **The HID firmware does not mute the USB audio device.** Verify the target application's recording/mute behavior on both press and release; do not treat the handset buttons as a guaranteed hardware privacy switch.
 
-## 9. Mount it in an enclosure
+## 8. Mount it in an enclosure
 
 Test the complete assembly before closing the box. Mount each board on an insulating plate or standoffs, secure the audio adapter, and strain-relieve the USB and K1 cables. Leave room for the plug bodies and access to the amplifier trimmer and KB2040 reset/BOOT buttons. Keep solder joints clear of screws and the lid.
 
@@ -330,8 +274,8 @@ Select the USB mic and speaker in Teams, then check the installed client's keybo
 
 | Symptom | Check |
 | --- | --- |
-| Speaker works, but PTT fails or changes when headphones are inserted into the handset | Run the unpowered yellow/brown reversal test in Step 1. |
-| Random key presses, or a button appears held | Both 10 kΩ pull-ups must connect to 3.3 V; confirm repaired handset ground, correct socket contacts, and that the plugs are fully seated. |
+| Speaker works, but PTT fails or changes when headphones are inserted into the handset | For the BTECH QHM22D, follow the [wiring-test and repair guide](docs/btech-qhm22d.md). For other handsets, verify their wiring against the pinout. |
+| Random key presses, or a button appears held | Both 10 kΩ pull-ups must connect to 3.3 V; confirm handset ground, correct socket contacts, and that the plugs are fully seated. |
 | PTT is always active | Check that the K1 3.5 mm sleeve was not mistaken for common ground. |
 | BOOT works but handset buttons do not | Check D2/D3 versus A2/A3, connector continuity, pull-ups, and each switch's resistance to ground. |
 | Nothing appears over USB | Use a data cable; inspect upstream/downstream assignment, D+/D−, 5 V, and GND. Test each device separately. |
@@ -348,12 +292,12 @@ Select the USB mic and speaker in Teams, then check the installed client's keybo
 
 | File | Purpose |
 | --- | --- |
-| [README.md](README.md) | Complete build, repair, setup, and test guide |
+| [README.md](README.md) | Adapter build, setup, and test guide |
 | [firmware/code.py](firmware/code.py) | Current CircuitPython firmware: F13 / Ctrl+Space, external pull-ups |
 | [hardware/speaker-mic-converter.svg](hardware/speaker-mic-converter.svg) | Original editable functional wiring diagram |
 | [hardware/speaker-mic-converter.png](hardware/speaker-mic-converter.png) | Original raster export for inline viewing |
 | [K1 accessory pinout PNG](hardware/k1-accessory-pinout.png) / [editable SVG](hardware/k1-accessory-pinout.svg) | General accessory wiring with optional secondary PTT highlighted in cyan; adapted artwork, CC BY-SA 3.0 |
-| [Test 1 diagram](hardware/testing/qhm22d-test-1.svg) / [Test 2 diagram](hardware/testing/qhm22d-test-2.svg) | Probe-placement diagrams with correct/reversed readings; PNG copies are alongside the SVGs |
+| [docs/btech-qhm22d.md](docs/btech-qhm22d.md) | BTECH-specific resistance tests, probe diagrams, repair photos, and supporting reports |
 | [docs/serial-console.md](docs/serial-console.md) | Windows serial logging and firmware troubleshooting |
 | [docs/enclosure.md](docs/enclosure.md) | Mounting guidance and current CAD availability |
 | [docs/references.md](docs/references.md) | Source links and what each establishes |
