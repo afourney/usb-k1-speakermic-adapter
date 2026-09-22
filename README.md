@@ -42,11 +42,25 @@ This is a general accessory reference; a particular handset's internal microphon
 
 Almost everything is already in place. The microphone can feed a suitable USB sound card's mic input, which supplies the electret bias. That leaves two jobs for the adapter.
 
-First, the handset's **8 Ω speaker needs more drive than this USB sound card can provide directly**. It's a heavier load than a typical pair of headphones, and direct playback in this build was much too quiet. The LM386 module sits between the sound card's output and the speaker to supply the extra drive. The gain adjustment is covered in the [amplifier instructions](#reduce-excessive-gain).
+First, the handset's **8 Ω speaker needs more drive than this USB sound card can provide directly**. It's a heavier load than a typical pair of headphones, and direct playback in this build was much too quiet. The LM386 module sits between the sound card's output and the speaker to supply the extra drive. The [amplification section below](#amplification) explains the choice of chip and the gain adjustment.
 
 Second, the computer needs a way to read the **PTT buttons**. The KB2040 watches the two switch inputs and turns presses and releases into USB keyboard events. The application can then use those keys for push-to-talk. A small USB hub joins the sound card and controller onto one cable, which also supplies the build's power.
 
 For the BTECH QHM22D shown in the photos, check the [model-specific wiring tests and repair instructions](docs/btech-qhm22d.md) before connecting it. The unit used here arrived with two cable wires reversed; that repair belongs to the handset, not the general K1 interface.
+
+## Amplification
+
+The **LM386** fits this build because it can drive a speaker with one side connected to **common ground**. The K1 handset shares that return between its speaker and PTT switches, so the amplifier needs to preserve it. The module's output coupling capacitor blocks the DC bias at the chip's output; the other speaker lead stays connected to ground.
+
+That rules out a direct swap with a typical bridge-output module such as a PAM8403 board. Those amplifiers actively drive both speaker terminals: the terminal marked “−” is another output, not ground. Connecting it to the handset's shared return would short an amplifier output to ground.
+
+### Bringing the gain down
+
+The LM386 development boards used here come configured for approximately **200× voltage gain**. That's more than we need from a USB sound card, and makes it easy to overdrive the amplifier. The LM386's default gain is **20×**; the board raises it with an external network between pins 1 and 8. See the [TI LM386 datasheet's gain-control section](https://www.ti.com/lit/ds/symlink/lm386.pdf#page=10).
+
+On the blue module used in this build, **R1 is a 0 Ω jumper in that gain-boost path**. With power disconnected, **desolder R1 and leave its pads open**. This disconnects the boost network and returns the gain to **20×**. Do not bridge the pads afterward—that would restore the connection you just removed. Check the board revision and trace R1 to the gain network before modifying a substitute module; component labels are not universal.
+
+The onboard trimmer still adjusts the input level. Start with it turned down and raise it while playing speech. Reducing gain makes the adjustment more usable, but it doesn't increase the amplifier's maximum output power or make clipping impossible. Keep the output coupling capacitor in place.
 
 Ready to build one? Start with the parts below. If yours is already wired, jump to [firmware setup](#6-install-circuitpython-and-the-firmware) or [application setup](#using-it-with-applications).
 
@@ -54,6 +68,7 @@ Ready to build one? Start with the parts below. If yours is already wired, jump 
 
 - [What's in the box?](#whats-in-the-box)
 - [The K1 connector](#the-k1-connector)
+- [Amplification](#amplification)
 - [Parts and tools](#parts-and-tools)
 - [Wiring diagram and pinout](#wiring-diagram-and-pinout)
 - [1. Check the speaker mic](#1-check-the-speaker-mic)
@@ -174,7 +189,7 @@ Connect K1 **3.5 mm ring → sound-card microphone signal** and **2.5 mm sleeve 
 
 ### Reduce excessive gain
 
-The documented LM386 module starts at approximately 200× gain. The prototype's **R1 was removed to open its gain-boost path**, returning the amplifier to its lower-gain configuration. This gives more usable adjustment with a sound-card output.
+As explained in [Amplification](#amplification), the documented module starts at approximately **200× gain**. With power disconnected, **desolder the 0 Ω R1 jumper and leave its pads open** to disconnect the gain-boost path and return the LM386 to **20× gain**.
 
 With power disconnected, confirm the module revision and trace that R1 really is in the gain-setting path associated with LM386 pins 1 and 8 before removing it. **“R1” is a board-specific label.** Do not remove an arbitrary resistor on a different module, and do not bridge the pads after removal. Leave the output coupling capacitor in place.
 
