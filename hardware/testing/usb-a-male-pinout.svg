@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<rect width="1200" height="720" fill="white"/>
+<g font-family="DejaVu Sans, sans-serif" fill="#20313e">
+<text x="60" y="65" font-size="34" font-weight="bold">USB-A male plug · USB 2.0 contacts</text>
+<text x="60" y="110" font-size="22">Look straight into the mating end, with the plastic tongue at the bottom.</text>
+<text x="60" y="148" font-size="20" fill="#60717e">The cable points away from you. This is not the socket or solder-side view.</text>
+<rect x="240" y="210" width="720" height="240" rx="22" fill="#bac6cf" stroke="#526777" stroke-width="5"/>
+<rect x="258" y="228" width="684" height="204" rx="10" fill="#f5f8fa" stroke="#526777" stroke-width="2"/>
+<rect x="275" y="345" width="650" height="70" rx="5" fill="#344452"/>
+<g fill="#d4ae58" stroke="#8c7136" stroke-width="2">
+<rect x="336" y="329" width="48" height="25"/>
+<rect x="496" y="329" width="48" height="25"/>
+<rect x="656" y="329" width="48" height="25"/>
+<rect x="816" y="329" width="48" height="25"/>
+</g>
+<g text-anchor="middle" font-size="28" font-weight="bold" fill="white">
+<text x="360" y="390">4</text><text x="520" y="390">3</text><text x="680" y="390">2</text><text x="840" y="390">1</text>
+</g>
+<g fill="none" stroke-width="3">
+<path d="M360 410V490" stroke="#344452"/><path d="M520 410V490" stroke="#147d70"/>
+<path d="M680 410V490" stroke="#60717e"/><path d="M840 410V490" stroke="#b73d38"/>
+</g>
+<g text-anchor="middle" font-size="25" font-weight="bold">
+<text x="360" y="530">GND</text><text x="520" y="530" fill="#147d70">D+</text>
+<text x="680" y="530">D−</text><text x="840" y="530" fill="#b73d38">VBUS / 5 V</text>
+</g>
+<g text-anchor="middle" font-size="20" fill="#60717e">
+<text x="360" y="565">Black*</text><text x="520" y="565">Green*</text><text x="680" y="565">White*</text><text x="840" y="565">Red*</text>
+</g>
+<text x="60" y="630" font-size="21">*Typical wire colours only. Verify each conductor by continuity with USB unplugged.</text>
+<text x="60" y="674" font-size="19" fill="#60717e">Shell = shield, not a substitute for locating pin 4. Drawing not to scale.</text>
+</g></svg>
