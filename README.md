@@ -55,28 +55,7 @@ The build photo shows the LM386 at the top, the prototyping board in the middle,
 ![The module assembly before it is installed in the enclosure](docs/images/assembly.jpg)
 
 
-## Contents
-
-- [What's in the box?](#whats-in-the-box)
-- [The K1 connector](#the-k1-connector)
-- [Amplification](#amplification)
-- [Keyboard emulation](#keyboard-emulation)
-- [Parts and tools](#parts-and-tools)
-- [Putting it all together](#putting-it-all-together)
-- [1. Check the speaker mic](#1-check-the-speaker-mic)
-- [2. Prepare the cables and connector breakout](#2-prepare-the-cables-and-connector-breakout)
-- [3. Assemble the USB and power connections](#3-assemble-the-usb-and-power-connections)
-- [4. Wire the microphone and speaker amplifier](#4-wire-the-microphone-and-speaker-amplifier)
-- [5. Wire the two PTT inputs](#5-wire-the-two-ptt-inputs)
-- [6. Install CircuitPython and the firmware](#6-install-circuitpython-and-the-firmware)
-- [7. Test the complete adapter](#7-test-the-complete-adapter)
-- [8. Mount it in an enclosure](#8-mount-it-in-an-enclosure)
-- [Using it with applications](#using-it-with-applications)
-- [Troubleshooting](#troubleshooting)
-
 ## Parts and tools
-
-### Electronics
 
 Most of the work here is joining existing modules. These are the parts used in the documented build, with a reference part where the exact SKU wasn't recorded. Substitutions are fine if the electrical requirements match; check the board revision before copying a modification.
 
@@ -107,30 +86,6 @@ The original diagram also shows an optional 9 V amplifier supply. **The instruct
 You will also need a multimeter with a low-ohms range, a soldering iron and flux, cutters/strippers, small screwdrivers, and a computer for copying files and testing USB audio. Fine tweezers and desoldering braid help with the amplifier's surface-mount gain resistor.
 
 ## Putting it all together
-
-[![Original USB speaker-mic converter wiring diagram](hardware/speaker-mic-converter.png)](hardware/speaker-mic-converter.svg)
-
-[Open the editable SVG](hardware/speaker-mic-converter.svg) · [Open the full-size PNG](hardware/speaker-mic-converter.png)
-
-This is the original **functional wiring diagram**, not a PCB layout or a drawing of connector solder-lug order. Its microphone block simplifies the handset's internal circuitry. Use the tests below to verify your particular handset's switching behavior.
-
-![The module assembly before it is installed in the enclosure](docs/images/assembly.jpg)
-
-The build photo shows the LM386 at the top, the prototyping board in the middle, the KB2040 and USB hub below, and the separate USB audio adapter to the right. Follow the schematic and contact labels rather than copying wire colours from this overview.
-
-The table maps the [K1 accessory contacts](#k1-accessory-pinout) to the adapter electronics.
-
-| K1 plug contact | Signal | Adapter connection |
-| --- | --- | --- |
-| 2.5 mm tip | Speaker signal | LM386 module's capacitor-coupled `OUT` |
-| 2.5 mm sleeve | Common return | Common ground |
-| 3.5 mm ring | Microphone signal | Sound-card microphone input, with the sound card providing mic bias |
-| 3.5 mm sleeve | PTT1, active low | KB2040 `D2` / pad **2**, plus 10 kΩ to `3V` |
-| 3.5 mm tip | PTT2, active low | KB2040 `D3` / pad **3**, plus a separate 10 kΩ to `3V` |
-
-Leave any unused 2.5 mm ring contact unconnected. **Do not ground the 3.5 mm sleeve:** in this build it is a button input. Ground comes from the **2.5 mm sleeve**. Verify your accessory against these assignments; microphone switching and secondary-button support can vary.
-
-## 1. Check the speaker mic
 
 With the handset disconnected from all equipment, identify its contacts using the pinout above. Check that the main PTT connects the **3.5 mm sleeve** to the **2.5 mm sleeve** when pressed and releases that connection when let go. For a UV-82-compatible dual-PTT mic, check the secondary button between the **3.5 mm tip** and **2.5 mm sleeve** as well. Use resistance readings, not just the continuity buzzer.
 
