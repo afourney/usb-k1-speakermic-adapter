@@ -16,7 +16,7 @@ The useful trick is to let ordinary USB devices do most of the work. A USB sound
 
 [![Block diagram of the USB hub, sound card, LM386 amplifier, KB2040 button controller, and K1 speaker mic](hardware/usb-k1-block-diagram.png)](hardware/usb-k1-block-diagram.png)
 
-*The sound card handles audio; the KB2040 turns button presses into keystrokes. Everything is powered from USB. Power wiring and individual connector contacts are left to the [schematic](#wiring-diagram-and-pinout).*
+*The sound card handles audio; the KB2040 turns button presses into keystrokes. Everything is powered from USB. Power wiring and individual connector contacts are left to the [schematic](#putting-it-all-together).*
 
 ## The K1 connector
 
@@ -81,7 +81,7 @@ Ready to build one? Start with the parts below. If yours is already wired, jump 
 - [Amplification](#amplification)
 - [Keyboard emulation](#keyboard-emulation)
 - [Parts and tools](#parts-and-tools)
-- [Wiring diagram and pinout](#wiring-diagram-and-pinout)
+- [Putting it all together](#putting-it-all-together)
 - [1. Check the speaker mic](#1-check-the-speaker-mic)
 - [2. Prepare the cables and connector breakout](#2-prepare-the-cables-and-connector-breakout)
 - [3. Assemble the USB and power connections](#3-assemble-the-usb-and-power-connections)
@@ -125,13 +125,17 @@ The original diagram also shows an optional 9 V amplifier supply. **The instruct
 
 You will also need a multimeter with a low-ohms range, a soldering iron and flux, cutters/strippers, small screwdrivers, and a computer for copying files and testing USB audio. Fine tweezers and desoldering braid help with the amplifier's surface-mount gain resistor.
 
-## Wiring diagram and pinout
+## Putting it all together
 
 [![Original USB speaker-mic converter wiring diagram](hardware/speaker-mic-converter.png)](hardware/speaker-mic-converter.svg)
 
 [Open the editable SVG](hardware/speaker-mic-converter.svg) · [Open the full-size PNG](hardware/speaker-mic-converter.png)
 
 This is the original **functional wiring diagram**, not a PCB layout or a drawing of connector solder-lug order. Its microphone block simplifies the handset's internal circuitry. Use the tests below to verify your particular handset's switching behavior.
+
+![The module assembly before it is installed in the enclosure](docs/images/assembly.jpg)
+
+The build photo shows the LM386 at the top, the prototyping board in the middle, the KB2040 and USB hub below, and the separate USB audio adapter to the right. Follow the schematic and contact labels rather than copying wire colours from this overview.
 
 The table maps the [K1 accessory contacts](#k1-accessory-pinout) to the adapter electronics.
 
@@ -219,10 +223,6 @@ Each button pulls a GPIO to ground. A separate pull-up resistor holds each input
 The `3V` pin provides regulated **3.3 V**. Do not pull the GPIOs up to USB 5 V. Board pads **2 and 3** are not **A2 and A3**.
 
 With power applied after inspection, each released PTT input should measure near 3.3 V relative to ground, dropping near 0 V when its corresponding button is held. Disconnect power again before moving any wiring. Both inputs must have a pull-up even if you only plan to use one button.
-
-![The module assembly before it is installed in the enclosure](docs/images/assembly.jpg)
-
-The build photo shows the LM386 at the top, the prototyping board in the middle, the KB2040 and USB hub below, and the separate USB audio adapter to the right. Follow the schematic and contact labels rather than copying wire colours from this overview.
 
 ## 6. Install CircuitPython and the firmware
 
