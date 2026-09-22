@@ -248,9 +248,8 @@ Select the USB mic and speaker in Teams, then check the installed client's keybo
 
 ### K1 diagram sources
 
-- [The (Chinese) Radio Documentation Project's original SVG](https://github.com/radiodoc/uv-5r/blob/master/assets/images/kenwood-2pin-headset.svg) — Source artwork for the K1 diagram. This adaptation removes the +5 V label, adds the cyan secondary-PTT circuit, and revises the labels and captions.
+- [The (Chinese) Radio Documentation Project's original SVG](https://github.com/radiodoc/uv-5r/blob/master/assets/images/kenwood-2pin-headset.svg) — Source artwork for the K1 diagram, licensed under CC BY-SA 3.0; the adapted PNG and SVG retain that license. This adaptation removes the +5 V label, adds the cyan secondary-PTT circuit, and revises the labels and captions.
 - [The project's UV-5R manual](https://radiodoc.github.io/uv-5r/) — Original publication containing the accessory diagram.
-- [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) — License for the original artwork and the adapted PNG and SVG.
 - [Miklor's UV-82 technical notes](https://www.miklor.com/COM/UV_Technical.php) — Explains UV-82 dual-PTT operation and wiring.
 - [Miklor's labeled connector photograph](https://www.miklor.com/COM/images/dualPTT.jpg) — Identifies the dual-PTT connector contacts.
 - [Walt N3PLA's circuit diagram](https://www.miklor.com/COM/images/dualPTT-N3PLA.jpg) — Circuit reference for the added secondary-PTT wiring.
