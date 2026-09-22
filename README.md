@@ -28,8 +28,6 @@ A speaker mic already contains most of what we need: a microphone, a speaker, an
 
 ![K1 accessory pinout: main PTT in black, optional secondary PTT in cyan](hardware/k1-accessory-pinout.png)
 
-[Full-size PNG](hardware/k1-accessory-pinout.png) · [Editable SVG](hardware/k1-accessory-pinout.svg)
-
 ### From radio accessory to USB peripheral
 
 Almost everything is already in place. The microphone can feed a suitable USB sound card's mic input, which supplies the electret bias. That leaves two jobs for the adapter.
@@ -251,7 +249,6 @@ Select the USB mic and speaker in Teams, then check the installed client's keybo
 - [The (Chinese) Radio Documentation Project's original SVG](https://github.com/radiodoc/uv-5r/blob/master/assets/images/kenwood-2pin-headset.svg) — Source artwork for the K1 diagram, licensed under CC BY-SA 3.0; the adapted PNG and SVG retain that license. This adaptation removes the +5 V label, adds the cyan secondary-PTT circuit, and revises the labels and captions.
 - [The project's UV-5R manual](https://radiodoc.github.io/uv-5r/) — Original publication containing the accessory diagram.
 - [Miklor's UV-82 technical notes](https://www.miklor.com/COM/UV_Technical.php) — Explains UV-82 dual-PTT operation and wiring.
-- [Miklor's labeled connector photograph](https://www.miklor.com/COM/images/dualPTT.jpg) — Identifies the dual-PTT connector contacts.
 - [Walt N3PLA's circuit diagram](https://www.miklor.com/COM/images/dualPTT-N3PLA.jpg) — Circuit reference for the added secondary-PTT wiring.
 - [Kenwood's TH-F6A/TH-F7E manual, printed page 45](https://kasc.kenwood.com/files/images/products/product_id_268/file_category_10/TH-F6A_F7E_inst.pdf#page=50) — Corroborates the conventional speaker, microphone, and main-PTT contacts.
 - [BaoFeng Tech's UV-82HP manual, printed page 19](https://baofengtech.com/wp-content/uploads/2020/09/UV82HP_Manual_ReducedSize.pdf#page=26) — Documents upper/lower-channel PTT operation; its generic accessory drawing does not show the second switch.
