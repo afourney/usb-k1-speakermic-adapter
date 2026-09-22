@@ -2,7 +2,7 @@
 
 Turn a two-way-radio speaker microphone into a USB microphone, amplified speaker, and two programmable push-to-talk buttons. One USB cable connects the whole thing to your computer.
 
-Built for [Cabin Fever x86](https://github.com/afourney/cabin-fever-x86), a conversational text-adventure game played over a radio. Also useful anywhere a physical push-to-talk button and a proper shoulder mic make more sense than another keyboard shortcut.
+Built for [Cabin Fever x86](https://github.com/afourney/cabin-fever-x86), a conversational text-adventure game played over a radio. Also useful anywhere a physical push-to-talk button and a proper shoulder mic make more sense than another keyboard shortcut, such as [Claude Code `/voice`](#claude-code) or [Teams](#microsoft-teams).
 
 ![The finished adapter and BTECH speaker mic running Cabin Fever x86](docs/images/cabin-fever-demo.jpg)
 
@@ -265,6 +265,22 @@ To try the repository's **default Ctrl+Space** instead, merge the following into
 ```
 
 This is a configuration example, **not a confirmed fix for Windows Terminal/WSL2**. Ctrl+Space did not work reliably in the original setup. Check terminal shortcut interception and the key received by Claude Code; use `/keybindings` and the [keybinding documentation](https://code.claude.com/docs/en/keybindings). A native browser receiving the HID chord does not prove that the terminal forwards it correctly. For WSL, also verify that its audio input works through WSLg.
+
+#### Auto-submit on release
+
+To send your dictated prompt when you release the PTT button, merge this into `~/.claude/settings.json` in the environment running Claude Code (inside WSL if that is where you run it). Keep any other settings already in the file:
+
+```json
+{
+  "voice": {
+    "enabled": true,
+    "mode": "hold",
+    "autoSubmit": true
+  }
+}
+```
+
+Hold the configured PTT button, speak, then release it. Claude Code finalizes the transcript and submits the prompt automatically if the transcript contains **at least three words**. Shorter transcripts stay in the input for manual submission with Enter. Set `"autoSubmit": false` to review every dictated prompt before sending. See the official [hold-to-record and auto-submit instructions](https://code.claude.com/docs/en/voice-dictation#hold-to-record).
 
 ### Microsoft Teams
 
