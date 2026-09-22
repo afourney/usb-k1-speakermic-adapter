@@ -18,20 +18,42 @@ The useful trick is to let ordinary USB devices do most of the work. A USB sound
 
 *The sound card handles audio; the KB2040 turns button presses into keystrokes. Everything is powered from USB. Power wiring and individual connector contacts are left to the [schematic](#wiring-diagram-and-pinout).*
 
-## The bits that needed sorting out
+## The K1 connector
 
-The speaker was much too quiet when connected directly to the USB sound card. Adding the LM386 fixed that, but the module's roughly 200× gain was more than this source needed. Removing its gain-setting resistor made the level adjustment more useful. The result works well for speech, though music can still drive it into clipping. Trying 9 V in place of 5 V brought little benefit for voice, so the build runs from USB power.
+The K1 connector has its roots in Kenwood's two-pin speaker/microphone interface: a 3.5 mm plug and a 2.5 mm plug mounted side by side. You'll find this Kenwood-style connection on handhelds from several manufacturers, notably the ubiquitous BaoFeng UV-5R. That shared connector gives us a ready-made supply of shoulder mics, earpieces, and other accessories to borrow for a USB project. [BTECH's compatibility list](https://baofengtech.com/product/qhm22d/) includes the UV-5R alongside models from Kenwood-style accessory families such as AnyTone, TYT, and Retevis.
 
-The connector has its own trap: **the sleeve of the 3.5 mm plug is a PTT input**. Common ground is on the 2.5 mm sleeve. It's worth putting the meter on those contacts before reaching for the soldering iron. The [pinout below](#k1-accessory-pinout) also shows how UV-82-compatible accessories squeeze in a second PTT button.
+A speaker mic already contains most of what we need: a microphone, a speaker, and a physical push-to-talk switch, all brought out through that pair of plugs. The audio connections are analog, and the PTT button closes a circuit. A compatible dual-PTT mic adds a second switch, giving us two independently readable buttons.
 
-The BTECH QHM22D used here added one more detour: two cable wires were reversed inside the mic. Its tests, before-and-after photos, and repair are on a [separate page](docs/btech-qhm22d.md), since that particular adventure belongs to the handset rather than the adapter.
+**Tip** is the end of a plug, **ring** is the middle contact between insulating bands, and **sleeve** is the contact nearest the cable. These names refer to the plugs that normally go into the radio, not an extra headphone jack on the handset. One detail worth catching early: **the 3.5 mm sleeve is a PTT input**. Common ground is on the **2.5 mm sleeve**.
+
+### K1 accessory pinout
+
+![K1 accessory pinout: main PTT in black, optional secondary PTT in cyan](hardware/k1-accessory-pinout.png)
+
+[Full-size PNG](hardware/k1-accessory-pinout.png) · [Editable SVG](hardware/k1-accessory-pinout.svg)
+
+The black circuit shows the usual single-button speaker-mic wiring. **Disregard the cyan paths for a single-button accessory.** Cyan adds the optional secondary PTT used by the UV-82 and compatible dual-PTT speaker mics. **PTT Main** connects to `PTT1` / `D2`; **PTT Secondary** connects to `PTT2` / `D3`. For the pictured BTECH unit's physical button mapping, see the [QHM22D instructions](docs/btech-qhm22d.md). Both switches return to the **2.5 mm sleeve**; the 2.5 mm tip remains the speaker signal. Dual PTT does not require reversing those speaker contacts.
+
+This is a general accessory reference; a particular handset's internal microphone circuit may differ. The 10 µF capacitor belongs to the reference drawing; it is not an extra component required by this adapter's build instructions. The optional secondary-PTT connection is not universal to K1 radios: for example, Kenwood's TH-F6A/TH-F7E uses the 3.5 mm tip for a supply output.
+
+**Sources and attribution:** adapted from [The (Chinese) Radio Documentation Project's original SVG](https://github.com/radiodoc/uv-5r/blob/master/assets/images/kenwood-2pin-headset.svg), published with its [UV-5R manual](https://radiodoc.github.io/uv-5r/), under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). This adaptation removes the +5 V label, adds the cyan secondary-PTT circuit, and revises the labels and captions; the adapted PNG and SVG retain that license. Dual-PTT wiring is based on [Miklor's UV-82 technical notes](https://www.miklor.com/COM/UV_Technical.php), its [labeled connector photograph](https://www.miklor.com/COM/images/dualPTT.jpg), and [Walt N3PLA's circuit diagram](https://www.miklor.com/COM/images/dualPTT-N3PLA.jpg). [Kenwood's TH-F6A/TH-F7E manual, printed page 45](https://kasc.kenwood.com/files/images/products/product_id_268/file_category_10/TH-F6A_F7E_inst.pdf#page=50), corroborates the conventional speaker, microphone, and main-PTT contacts. [BaoFeng Tech's UV-82HP manual, printed page 19](https://baofengtech.com/wp-content/uploads/2020/09/UV82HP_Manual_ReducedSize.pdf#page=26), documents upper/lower-channel PTT operation; its generic accessory drawing does not show the second switch.
+
+### From radio accessory to USB peripheral
+
+Almost everything is already in place. The microphone can feed a suitable USB sound card's mic input, which supplies the electret bias. That leaves two jobs for the adapter.
+
+First, the handset's **8 Ω speaker needs more drive than this USB sound card can provide directly**. It's a heavier load than a typical pair of headphones, and direct playback in this build was much too quiet. The LM386 module sits between the sound card's output and the speaker to supply the extra drive. The gain adjustment is covered in the [amplifier instructions](#reduce-excessive-gain).
+
+Second, the computer needs a way to read the **PTT buttons**. The KB2040 watches the two switch inputs and turns presses and releases into USB keyboard events. The application can then use those keys for push-to-talk. A small USB hub joins the sound card and controller onto one cable, which also supplies the build's power.
+
+For the BTECH QHM22D shown in the photos, check the [model-specific wiring tests and repair instructions](docs/btech-qhm22d.md) before connecting it. The unit used here arrived with two cable wires reversed; that repair belongs to the handset, not the general K1 interface.
 
 Ready to build one? Start with the parts below. If yours is already wired, jump to [firmware setup](#6-install-circuitpython-and-the-firmware) or [application setup](#using-it-with-applications).
 
 ## Contents
 
 - [What's in the box?](#whats-in-the-box)
-- [The bits that needed sorting out](#the-bits-that-needed-sorting-out)
+- [The K1 connector](#the-k1-connector)
 - [Parts and tools](#parts-and-tools)
 - [Wiring diagram and pinout](#wiring-diagram-and-pinout)
 - [1. Check the speaker mic](#1-check-the-speaker-mic)
@@ -85,7 +107,7 @@ You will also need a multimeter with a low-ohms range, a soldering iron and flux
 
 This is the original **functional wiring diagram**, not a PCB layout or a drawing of connector solder-lug order. Its microphone block simplifies the handset's internal circuitry. Use the tests below to verify your particular handset's switching behavior.
 
-**Tip** is the end of a plug, **ring** is the middle contact between insulating bands, and **sleeve** is the contact nearest the cable. The table refers to the two plugs that normally go into a radio, not the extra headphone jack on the handset.
+The table maps the [K1 accessory contacts](#k1-accessory-pinout) to the adapter electronics.
 
 | K1 plug contact | Signal | Adapter connection |
 | --- | --- | --- |
@@ -96,18 +118,6 @@ This is the original **functional wiring diagram**, not a PCB layout or a drawin
 | 3.5 mm tip | PTT2, active low | KB2040 `D3` / pad **3**, plus a separate 10 kΩ to `3V` |
 
 Leave any unused 2.5 mm ring contact unconnected. **Do not ground the 3.5 mm sleeve:** in this build it is a button input. Ground comes from the **2.5 mm sleeve**. Verify your accessory against these assignments; microphone switching and secondary-button support can vary.
-
-### K1 accessory pinout
-
-![K1 accessory pinout: main PTT in black, optional secondary PTT in cyan](hardware/k1-accessory-pinout.png)
-
-[Full-size PNG](hardware/k1-accessory-pinout.png) · [Editable SVG](hardware/k1-accessory-pinout.svg)
-
-The black circuit shows the usual single-button speaker-mic wiring. **Disregard the cyan paths for a single-button accessory.** Cyan adds the optional secondary PTT used by the UV-82 and compatible dual-PTT speaker mics. **PTT Main** connects to `PTT1` / `D2`; **PTT Secondary** connects to `PTT2` / `D3`. For the pictured BTECH unit's physical button mapping, see the [QHM22D instructions](docs/btech-qhm22d.md). Both switches return to the **2.5 mm sleeve**; the 2.5 mm tip remains the speaker signal. Dual PTT does not require reversing those speaker contacts.
-
-This is a general accessory reference; a particular handset's internal microphone circuit may differ. The 10 µF capacitor belongs to the reference drawing; it is not an extra component required by this adapter's build instructions. The optional secondary-PTT connection is not universal to K1 radios: for example, Kenwood's TH-F6A/TH-F7E uses the 3.5 mm tip for a supply output.
-
-**Sources and attribution:** adapted from [The (Chinese) Radio Documentation Project's original SVG](https://github.com/radiodoc/uv-5r/blob/master/assets/images/kenwood-2pin-headset.svg), published with its [UV-5R manual](https://radiodoc.github.io/uv-5r/), under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). This adaptation removes the +5 V label, adds the cyan secondary-PTT circuit, and revises the labels and captions; the adapted PNG and SVG retain that license. Dual-PTT wiring is based on [Miklor's UV-82 technical notes](https://www.miklor.com/COM/UV_Technical.php), its [labeled connector photograph](https://www.miklor.com/COM/images/dualPTT.jpg), and [Walt N3PLA's circuit diagram](https://www.miklor.com/COM/images/dualPTT-N3PLA.jpg). [Kenwood's TH-F6A/TH-F7E manual, printed page 45](https://kasc.kenwood.com/files/images/products/product_id_268/file_category_10/TH-F6A_F7E_inst.pdf#page=50), corroborates the conventional speaker, microphone, and main-PTT contacts. [BaoFeng Tech's UV-82HP manual, printed page 19](https://baofengtech.com/wp-content/uploads/2020/09/UV82HP_Manual_ReducedSize.pdf#page=26), documents upper/lower-channel PTT operation; its generic accessory drawing does not show the second switch.
 
 ## 1. Check the speaker mic
 
