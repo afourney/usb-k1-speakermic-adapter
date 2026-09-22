@@ -69,4 +69,4 @@ Only do this if your measurements identify the reversal. Returning a defective u
 
 Both pictures show the actual handset used in this project. The swap is on the **incoming cable pads at the bottom**, not the speaker's own two wires at the top.
 
-[Continue with adapter assembly](../README.md#2-prepare-the-cables-and-connector-breakout)
+[Continue with adapter assembly](../README.md#assembly-tips-and-gotchas)
