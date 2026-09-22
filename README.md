@@ -36,28 +36,24 @@ A speaker mic already contains most of what we need: a microphone, a speaker, an
 
 Almost everything is already in place. The microphone can feed a suitable USB sound card's mic input, which supplies the electret bias. That leaves two jobs for the adapter.
 
-First, the handset's **8 Ω speaker needs more drive than this USB sound card can provide directly**. It's a heavier load than a typical pair of headphones, and direct playback in this build was much too quiet. The LM386 module sits between the sound card's output and the speaker to supply the extra drive. The [amplification section below](#amplification) explains the choice of chip and the gain adjustment.
-
-Second, the computer needs a way to read the **PTT buttons**. The KB2040 watches the two switch inputs and turns presses and releases into USB keyboard events. The application can then use those keys for push-to-talk. We discuss each in turn below, then bring it all together in the assembly instructions. 
-
-
-## Amplification
-
-The **LM386** fits this build because it can drive a speaker with one side connected to **common ground**. The K1 handset shares that return between its speaker and PTT switches, so the amplifier needs to preserve it. That rules out a direct swap with a typical bridge-output module such as a PAM8403 board. Those amplifiers actively drive both speaker terminals: the terminal marked “−” is another output, not ground. Connecting it to the handset's shared return would short an amplifier output to ground.
-
-### Bringing the gain down
+First, the handset's **8 Ω speaker needs more drive than this USB sound card can provide directly**. It's a heavier load than a typical pair of headphones, and direct playback in this build was much too quiet. The LM386 module sits between the sound card's output and the speaker to supply the extra drive. It fits this build because it can drive a speaker with one side connected to **common ground**. This is important because the K1 handset shares that return between its speaker and PTT switches ruling out classic op amp such as a PAM8403, which actively drive both speaker terminals. Connecting such amps to the handset's shared return would short an amplifier output to ground every time the button is pressed.
 
 The LM386 development boards used here come configured for approximately **200× voltage gain**. That's more than we need from a USB sound card, and makes it easy to overdrive the amplifier. The LM386's default gain is **20×**; the board raises it with an external network between pins 1 and 8. See the [TI LM386 datasheet's gain-control section](https://www.ti.com/lit/ds/symlink/lm386.pdf#page=10). On the blue module used in this build, pin 1 and 8 are bridged by R1, a 0 Ω jumper. With power disconnected, **desolder R1 and leave its pads open**. This disconnects the boost network and returns the gain to **20×**. Check the board revision before modifcation since component labels are not universal.
 
-## Keyboard emulation
 
-The sound card takes care of audio, but it has no way to report the handset's PTT switches to the computer. Those buttons simply close electrical contacts. A microcontroller provides the missing link: it reads the switches and presents itself to the computer as a **USB HID keyboard**. Programming the board and choosing what each button sends are covered later in [firmware setup](#6-install-circuitpython-and-the-firmware).
+While the sound card and amplified take care of audio, we still need a way to report the handset's PTT switches to the computer -- this is the second jon of the adapter. Those buttons simply close electrical contacts that pull to ground. A microcontroller provides the missing link: it reads the switches and presents itself to the computer as a **USB HID keyboard**. Pressing a PTT button then looks like holding a keyboard key; releasing the button releases the key. Applications can use their [existing keyboard shortcuts](#using-it-with-applications) for push-to-talk, without needing a custom interface to the handset.
 
-Pressing a PTT button then looks like holding a keyboard key; releasing the button releases the key. Applications can use their existing keyboard shortcuts for push-to-talk, without needing a custom interface to the handset. The audio stays on the sound card, while the microcontroller handles the buttons.
+The **Adafruit KB2040** was chosen for a practical wiring detail: its **USB D+ and D− signals are broken out to accessible pads beside the USB-C connector**. That makes it straightforward to wire the USB data connection directly to the internal hub without soldering onto the connector's tiny contacts. Adafruit documents these pads in the [KB2040 pinout guide](https://learn.adafruit.com/adafruit-kb2040/pinouts). The board's RP2040 also provides native USB support and more than enough inputs for the two switches. Programming the board and choosing what each button sends are covered later in [firmware setup](#6-install-circuitpython-and-the-firmware).
 
-The **Adafruit KB2040** was chosen for a practical wiring detail: its **USB D+ and D− signals are broken out to accessible pads beside the USB-C connector**. That makes it straightforward to wire the USB data connection directly to the internal hub without soldering onto the connector's tiny contacts. Adafruit documents these pads in the [KB2040 pinout guide](https://learn.adafruit.com/adafruit-kb2040/pinouts). The board's RP2040 also provides native USB support and more than enough inputs for the two switches.
+The following wirting diagram shows the complete adapter, including the USB hub, sound card, LM386 module, KB2040, and K1 handset. The speaker mic block simplifies the handset's internal circuitry.
 
-Ready to build one? Start with the parts below. If yours is already wired, jump to [firmware setup](#6-install-circuitpython-and-the-firmware) or [application setup](#using-it-with-applications).
+[![USB speaker-mic converter wiring diagram](hardware/speaker-mic-converter.png)](hardware/speaker-mic-converter.svg)
+
+
+The build photo shows the LM386 at the top, the prototyping board in the middle, the KB2040 and USB hub below, and the separate USB audio adapter to the right. Follow the schematic and contact labels rather than copying wire colours from this overview.
+
+![The module assembly before it is installed in the enclosure](docs/images/assembly.jpg)
+
 
 ## Contents
 
