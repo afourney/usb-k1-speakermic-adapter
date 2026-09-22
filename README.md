@@ -14,6 +14,28 @@ It also makes a satisfying physical interface for [Claude Code `/voice`](#claude
 
 The useful trick is to let ordinary USB devices do most of the work. A USB sound card handles microphone input and audio output. An LM386 module gives the little speaker enough drive to be heard. An Adafruit KB2040 running CircuitPython watches the two PTT buttons and presents them to the computer as keyboard keys. A tiny USB hub brings the audio and keyboard devices out through one cable. The supplied firmware sends **F13** from the main button and **Ctrl+Space** from the secondary button; both bindings are editable.
 
+```mermaid
+flowchart TD
+    computer["Computer"]
+    subgraph adapter["USB adapter"]
+        hub["USB hub"]
+        audio["USB sound card"]
+        controller["KB2040 button controller"]
+        amp["LM386 speaker amplifier"]
+    end
+    handset["K1 speaker mic"]
+
+    computer <-->|One USB cable| hub
+    hub <-->|USB audio| audio
+    hub <-->|USB keyboard| controller
+    audio -->|Playback| amp
+    amp -->|Amplified audio| handset
+    handset -->|Microphone audio| audio
+    handset -->|Two PTT buttons| controller
+```
+
+*The sound card handles audio; the KB2040 turns button presses into keystrokes. Everything is powered from USB. Power wiring and individual connector contacts are left to the [schematic](#wiring-diagram-and-pinout).*
+
 ## The bits that needed sorting out
 
 The speaker was much too quiet when connected directly to the USB sound card. Adding the LM386 fixed that, but the module's roughly 200× gain was more than this source needed. Removing its gain-setting resistor made the level adjustment more useful. The result works well for speech, though music can still drive it into clipping. Trying 9 V in place of 5 V brought little benefit for voice, so the build runs from USB power.
