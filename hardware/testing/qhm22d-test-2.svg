@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820">
+<title>QHM22D resistance test 2: Tip to sleeve</title>
+<desc>Disconnect the handset from all equipment and hold PTT1. Black probe on the 3.5 mm sleeve. Red probe on the 2.5 mm tip. Correct wiring reads ≈ 8–9 Ω; the reversed unit reads ≈ 0 Ω. These drawings show the radio-end plugs, not the handset headphone jack.</desc>
+<rect width="1200" height="820" fill="white"/>
+<g font-family="DejaVu Sans, sans-serif">
+<text x="48" y="53" font-size="18" fill="#537080" font-weight="600" text-anchor="start">BTECH QHM22D  /  WIRING CHECK</text>
+<text x="48" y="103" font-size="36" fill="#243444" font-weight="700" text-anchor="start">Test 2 · Tip to sleeve</text>
+<rect x="48" y="130" width="1104" height="76" rx="10" fill="#eef4f8"/>
+<text x="68" y="160" font-size="22" fill="#243444" font-weight="700" text-anchor="start">UNPLUG EVERYTHING · Meter on Ω · Hold PTT1 throughout</text>
+<text x="68" y="190" font-size="18" fill="#243444" font-weight="400" text-anchor="start">PTT1 = the button that switches the 3.5 mm sleeve. Use the SAME button for both tests.</text>
+<text x="48" y="239" font-size="17" fill="#537080" font-weight="600" text-anchor="start">RADIO-END PLUGS</text>
+<text x="795" y="239" font-size="17" fill="#537080" font-weight="600" text-anchor="start">MULTIMETER · RESISTANCE</text>
+<path d="M48 382H95" stroke="#344452" stroke-width="20"/>
+<rect x="95" y="275" width="135" height="220" rx="18" fill="#344452"/>
+<text x="108" y="307" font-size="20" fill="white" font-weight="600" text-anchor="start">3.5 mm</text>
+<rect x="230" y="274.0" width="174" height="52" fill="#c8d2d9" stroke="#657886" stroke-width="2"/>
+<rect x="416" y="274.0" width="76" height="52" fill="#c8d2d9" stroke="#657886" stroke-width="2"/>
+<rect x="404" y="274.0" width="12" height="52" fill="#263746"/>
+<rect x="492" y="274.0" width="12" height="52" fill="#263746"/>
+<path d="M504 274.0H550L586 300L550 326.0H504Z" fill="#c8d2d9" stroke="#657886" stroke-width="2"/>
+<text x="316" y="260.0" font-size="17" fill="#344452" font-weight="600" text-anchor="middle">SLEEVE</text>
+<text x="455" y="260.0" font-size="17" fill="#344452" font-weight="600" text-anchor="middle">RING</text>
+<text x="548" y="260.0" font-size="17" fill="#344452" font-weight="600" text-anchor="middle">TIP</text>
+<text x="108" y="467" font-size="20" fill="white" font-weight="600" text-anchor="start">2.5 mm</text>
+<g transform="translate(230 0) scale(0.8 1) translate(-230 0)">
+<rect x="230" y="441.0" width="174" height="38" fill="#c8d2d9" stroke="#657886" stroke-width="2"/>
+<rect x="416" y="441.0" width="76" height="38" fill="#c8d2d9" stroke="#657886" stroke-width="2"/>
+<rect x="404" y="441.0" width="12" height="38" fill="#263746"/>
+<rect x="492" y="441.0" width="12" height="38" fill="#263746"/>
+<path d="M504 441.0H550L586 460L550 479.0H504Z" fill="#c8d2d9" stroke="#657886" stroke-width="2"/>
+</g>
+<text x="298.8" y="427.0" font-size="17" fill="#344452" font-weight="600" text-anchor="middle">SLEEVE</text>
+<text x="410.0" y="427.0" font-size="17" fill="#344452" font-weight="600" text-anchor="middle">RING</text>
+<text x="484.4" y="427.0" font-size="17" fill="#344452" font-weight="600" text-anchor="middle">TIP</text>
+<rect x="232" y="276" width="170" height="48" fill="#e1ebf0" stroke="#172c3c" stroke-width="3"/>
+<g transform="translate(230 0) scale(0.8 1) translate(-230 0)">
+<path d="M506 443H550L582 460L550 477H506Z" fill="#ffedea" stroke="#c63830" stroke-width="3"/>
+</g>
+<rect x="810" y="262" width="325" height="274" rx="22" fill="#e4eaf0" stroke="#728695" stroke-width="3"/>
+<rect x="836" y="283" width="273" height="95" rx="7" fill="#fafff1" stroke="#98a99c" stroke-width="2"/>
+<text x="972" y="319" font-size="15" fill="#586b60" font-weight="600" text-anchor="middle">READ RESISTANCE</text>
+<text x="972" y="358" font-size="35" fill="#253d31" font-weight="700" text-anchor="middle">Ω</text>
+<circle cx="972" cy="428" r="32" fill="white" stroke="#728695" stroke-width="3"/>
+<path d="M972 428L990 410" stroke="#243444" stroke-width="7" stroke-linecap="round"/>
+<text x="1017" y="417" font-size="23" fill="#243444" font-weight="600" text-anchor="start">Ω</text>
+<text x="886" y="485" font-size="16" fill="#243444" font-weight="600" text-anchor="middle">COM</text>
+<text x="1050" y="485" font-size="16" fill="#243444" font-weight="600" text-anchor="middle">V / Ω</text>
+<circle cx="886" cy="509" r="10" fill="#172c3c"/>
+<circle cx="1050" cy="509" r="10" fill="#c63830"/>
+<path d="M886 509V554H736V381H326V365" fill="none" stroke="#172c3c" stroke-width="5" stroke-linejoin="round"/>
+<path d="M326 365V344" stroke="#172c3c" stroke-width="12" stroke-linecap="round"/>
+<path d="M326 340V326" stroke="#526878" stroke-width="4"/>
+<circle cx="326" cy="326" r="5" fill="#172c3c"/>
+<path d="M1050 509V595H486V526" fill="none" stroke="#c63830" stroke-width="5" stroke-linejoin="round"/>
+<path d="M486 526V499" stroke="#c63830" stroke-width="12" stroke-linecap="round"/>
+<path d="M486 494V479" stroke="#526878" stroke-width="4"/>
+<circle cx="486" cy="479" r="5" fill="#c63830"/>
+<text x="350" y="357" font-size="20" fill="#172c3c" font-weight="600" text-anchor="start">Black: 3.5 mm sleeve</text>
+<text x="48" y="560" font-size="20" fill="#b6312b" font-weight="600" text-anchor="start">Red: 2.5 mm tip</text>
+<rect x="48" y="627" width="538" height="103" rx="12" fill="#eaf6ef"/>
+<rect x="606" y="627" width="546" height="103" rx="12" fill="#fff1e7"/>
+<text x="70" y="660" font-size="18" fill="#236240" font-weight="700" text-anchor="start">CORRECT / AFTER REPAIR</text>
+<text x="70" y="706" font-size="35" fill="#236240" font-weight="700" text-anchor="start">≈ 8–9 Ω</text>
+<text x="628" y="660" font-size="18" fill="#98451c" font-weight="700" text-anchor="start">REVERSED / BEFORE REPAIR</text>
+<text x="628" y="706" font-size="35" fill="#98451c" font-weight="700" text-anchor="start">≈ 0 Ω</text>
+<text x="48" y="766" font-size="19" fill="#243444" font-weight="400" text-anchor="start">Use the numeric Ω reading: a continuity buzzer can beep at both 0 Ω and 8 Ω.</text>
+<text x="48" y="797" font-size="17" fill="#537080" font-weight="400" text-anchor="start">Not to scale. Probe colours may be exchanged; the CONTACT PAIR is what matters.</text>
+</g></svg>

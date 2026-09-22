@@ -1,0 +1,224 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1480" viewBox="0 0 2000 1480">
+<title>USB Speaker-Mic Converter — confirmed QHM22D dual-PTT wiring</title>
+<desc>Clean redraw of Adam Fourney's hand-drawn wiring diagram. A two-port USB hub connects a soundcard and an Adafruit KB2040. Soundcard left audio drives an LM386 module and an 8-ohm speaker through the 2.5 mm tip. The 2.5 mm sleeve is common ground. The 3.5 mm ring carries microphone audio, sleeve connects PTT1 to D2, and tip connects PTT2 to D3. Both PTT signals have independent 10 kilohm pull-ups to regulated 3.3 volts. Both switches close to ground. Amplifier power is USB 5 volts or optional boosted 9 volts. This shows functional connections, not physical connector pad order.</desc>
+<rect width="2000" height="1480" fill="white"/>
+<style>text{font-family:"DejaVu Sans",sans-serif;fill:#1C2C38} .wire{fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round} .label{paint-order:stroke;stroke:white;stroke-width:7;stroke-linejoin:round}</style>
+<text x="70" y="86" font-size="48" fill="#1C2C38" style="fill:#1C2C38" text-anchor="start" font-weight="600" >USB Speaker-Mic Converter</text>
+<text x="72" y="127" font-size="23" fill="#60717E" style="fill:#60717E" text-anchor="start" font-weight="400" >QHM22D dual PTT  ·  USB audio  ·  LM386 amplifier  ·  KB2040</text>
+<text x="1930" y="82" font-size="18" fill="#60717E" style="fill:#60717E" text-anchor="end" font-weight="600" >WIRING DIAGRAM</text>
+<text x="1930" y="118" font-size="17" fill="#60717E" style="fill:#60717E" text-anchor="end" font-weight="400" >Functional connections · not physical pin order</text>
+<path d="M70 150H1930" class="wire" stroke="#A5B3BE" style="stroke-width:1.5" />
+<rect x="70" y="260" width="420" height="920" rx="12" fill="white" stroke="#A5B3BE" stroke-width="2.5"/>
+<path d="M82 260H478Q490 260 490 272V348H70V272Q70 260 82 260Z" fill="#F3F6F8"/>
+<text x="94" y="297" font-size="29" fill="#1C2C38" style="fill:#1C2C38" text-anchor="start" font-weight="600" >BTECH QHM22D</text>
+<text x="94" y="328" font-size="19" fill="#60717E" style="fill:#60717E" text-anchor="start" font-weight="400" >Corrected speaker wiring · K1 contacts</text>
+<rect x="760" y="210" width="390" height="275" rx="12" fill="white" stroke="#A5B3BE" stroke-width="2.5"/>
+<path d="M772 210H1138Q1150 210 1150 222V298H760V222Q760 210 772 210Z" fill="#F3F6F8"/>
+<text x="784" y="247" font-size="29" fill="#1C2C38" style="fill:#1C2C38" text-anchor="start" font-weight="600" >LM386 amplifier</text>
+<text x="784" y="278" font-size="18" fill="#60717E" style="fill:#60717E" text-anchor="start" font-weight="400" >Module · output capacitor included</text>
+<rect x="1300" y="250" width="400" height="470" rx="12" fill="white" stroke="#A5B3BE" stroke-width="2.5"/>
+<path d="M1312 250H1688Q1700 250 1700 262V338H1300V262Q1300 250 1312 250Z" fill="#F3F6F8"/>
+<text x="1324" y="287" font-size="29" fill="#1C2C38" style="fill:#1C2C38" text-anchor="start" font-weight="600" >USB soundcard</text>
+<text x="1324" y="318" font-size="19" fill="#60717E" style="fill:#60717E" text-anchor="start" font-weight="400" >Mono microphone input · stereo output</text>
+<rect x="1300" y="825" width="400" height="355" rx="12" fill="white" stroke="#A5B3BE" stroke-width="2.5"/>
+<path d="M1312 825H1688Q1700 825 1700 837V913H1300V837Q1300 825 1312 825Z" fill="#F3F6F8"/>
+<text x="1324" y="862" font-size="29" fill="#1C2C38" style="fill:#1C2C38" text-anchor="start" font-weight="600" >2-port USB hub</text>
+<text x="1324" y="893" font-size="19" fill="#60717E" style="fill:#60717E" text-anchor="start" font-weight="400" >CH334F · downstream ports 1 &amp; 2</text>
+<rect x="760" y="830" width="390" height="350" rx="12" fill="white" stroke="#A5B3BE" stroke-width="2.5"/>
+<path d="M772 830H1138Q1150 830 1150 842V918H760V842Q760 830 772 830Z" fill="#F3F6F8"/>
+<text x="784" y="867" font-size="29" fill="#1C2C38" style="fill:#1C2C38" text-anchor="start" font-weight="600" >Adafruit KB2040</text>
+<text x="784" y="898" font-size="19" fill="#60717E" style="fill:#60717E" text-anchor="start" font-weight="400" >RP2040 · USB HID / configurable keys</text>
+<rect x="1820" y="895" width="120" height="225" rx="12" fill="#F3F6F8" stroke="#A5B3BE" stroke-width="2.5"/>
+<text x="1880" y="862" font-size="27" fill="#1C2C38" style="fill:#1C2C38" text-anchor="middle" font-weight="600" >Computer</text>
+<path d="M110 374L152 390V410L110 426Z" class="wire" stroke="#1C2C38" style="stroke-width:2.5" />
+<rect x="152" y="385" width="20" height="30" fill="white" stroke="#1C2C38" stroke-width="2.5"/>
+<path d="M172 385H490" class="wire" stroke="#236AAB" style="stroke-width:3" />
+<path d="M172 415H230V460H490" class="wire" stroke="#4D5C67" style="stroke-width:3" />
+<circle cx="230" cy="460" r="5" fill="#4D5C67"/>
+<path d="M230 460v18" class="wire" stroke="#4D5C67" style="stroke-width:3" />
+<path d="M230 478v14 M213 492h34 M219 500h22 M225 508h10" class="wire" stroke="#4D5C67" style="stroke-width:2.5" />
+<text x="107" y="365" font-size="21" fill="#1C2C38" style="fill:#1C2C38" text-anchor="start" font-weight="400" >Speaker · 8 Ω</text>
+<text x="470" y="376" font-size="20" fill="#236AAB" style="fill:#236AAB" text-anchor="end" font-weight="600" class="label">2.5 mm TIP</text>
+<text x="470" y="450" font-size="20" fill="#4D5C67" style="fill:#4D5C67" text-anchor="end" font-weight="600" class="label">2.5 mm SLEEVE</text>
+<path d="M490 385H760" class="wire" stroke="#236AAB" style="stroke-width:3" />
+<circle cx="490" cy="385" r="5" fill="white" stroke="#236AAB" stroke-width="2.5"/>
+<circle cx="760" cy="385" r="5" fill="white" stroke="#236AAB" stroke-width="2.5"/>
+<text x="625" y="370" font-size="20" fill="#236AAB" style="fill:#236AAB" text-anchor="middle" font-weight="400" >Speaker audio</text>
+<text x="780" y="393" font-size="22" fill="#236AAB" style="fill:#236AAB" text-anchor="start" font-weight="600" >OUT</text>
+<text x="780" y="438" font-size="22" fill="#4D5C67" style="fill:#4D5C67" text-anchor="start" font-weight="400" >GND</text>
+<path d="M760 430H720v12" class="wire" stroke="#4D5C67" style="stroke-width:3" />
+<circle cx="760" cy="430" r="5" fill="white" stroke="#4D5C67" stroke-width="2.5"/>
+<path d="M720 442v14 M703 456h34 M709 464h22 M715 472h10" class="wire" stroke="#4D5C67" style="stroke-width:2.5" />
+<path d="M490 460H525v18" class="wire" stroke="#4D5C67" style="stroke-width:3" />
+<circle cx="490" cy="460" r="5" fill="white" stroke="#4D5C67" stroke-width="2.5"/>
+<path d="M525 478v14 M508 492h34 M514 500h22 M520 508h10" class="wire" stroke="#4D5C67" style="stroke-width:2.5" />
+<rect x="115" y="566" width="190" height="69" rx="5" fill="#F3F6F8" stroke="#A5B3BE" stroke-width="2"/>
+<text x="210" y="595" font-size="22" fill="#1C2C38" style="fill:#1C2C38" text-anchor="middle" font-weight="400" >Microphone</text>
+<text x="210" y="619" font-size="16" fill="#60717E" style="fill:#60717E" text-anchor="middle" font-weight="400" >internal circuitry</text>
+<path d="M305 600H1300" class="wire" stroke="#236AAB" style="stroke-width:3" />
+<circle cx="490" cy="600" r="5" fill="white" stroke="#236AAB" stroke-width="2.5"/>
+<circle cx="1300" cy="600" r="5" fill="white" stroke="#236AAB" stroke-width="2.5"/>
+<text x="470" y="586" font-size="20" fill="#236AAB" style="fill:#236AAB" text-anchor="end" font-weight="600" class="label">3.5 mm RING</text>
+<text x="890" y="584" font-size="20" fill="#236AAB" style="fill:#236AAB" text-anchor="middle" font-weight="400" >Microphone audio</text>
+<path d="M210 635v18" class="wire" stroke="#4D5C67" style="stroke-width:3" />
+<path d="M210 653v14 M193 667h34 M199 675h22 M205 683h10" class="wire" stroke="#4D5C67" style="stroke-width:2.5" />
+<text x="1320" y="608" font-size="22" fill="#236AAB" style="fill:#236AAB" text-anchor="start" font-weight="600" >MIC IN</text>
+<path d="M1150 350H1300" class="wire" stroke="#236AAB" style="stroke-width:3" />
+<circle cx="1150" cy="350" r="5" fill="white" stroke="#236AAB" stroke-width="2.5"/>
+<circle cx="1300" cy="350" r="5" fill="white" stroke="#236AAB" stroke-width="2.5"/>
+<text x="1130" y="358" font-size="22" fill="#236AAB" style="fill:#236AAB" text-anchor="end" font-weight="600" >IN</text>
+<text x="1320" y="358" font-size="22" fill="#236AAB" style="fill:#236AAB" text-anchor="start" font-weight="600" >LEFT OUT</text>
+<text x="1225" y="336" font-size="18" fill="#236AAB" style="fill:#236AAB" text-anchor="middle" font-weight="400" >Audio</text>
+<text x="1320" y="402" font-size="22" fill="#236AAB" style="fill:#236AAB" text-anchor="start" font-weight="400" >RIGHT OUT</text>
+<path d="M1300 395h-28" class="wire" stroke="#236AAB" style="stroke-width:3" />
+<circle cx="1300" cy="395" r="5" fill="white" stroke="#236AAB" stroke-width="2.5"/>
+<path d="M1264 387l16 16 M1264 403l16 -16" class="wire" stroke="#60717E" style="stroke-width:2" />
+<text x="1545" y="402" font-size="18" fill="#60717E" style="fill:#60717E" text-anchor="start" font-weight="400" >unused</text>
+<text x="1320" y="451" font-size="22" fill="#4D5C67" style="fill:#4D5C67" text-anchor="start" font-weight="400" >OUT GND</text>
+<path d="M1300 443h-50v13" class="wire" stroke="#4D5C67" style="stroke-width:3" />
+<path d="M1250 456v14 M1233 470h34 M1239 478h22 M1245 486h10" class="wire" stroke="#4D5C67" style="stroke-width:2.5" />
+<circle cx="1300" cy="443" r="5" fill="white" stroke="#4D5C67" stroke-width="2.5"/>
+<text x="1320" y="657" font-size="22" fill="#4D5C67" style="fill:#4D5C67" text-anchor="start" font-weight="400" >MIC GND</text>
+<path d="M1300 649h-50v12" class="wire" stroke="#4D5C67" style="stroke-width:3" />
+<path d="M1250 661v14 M1233 675h34 M1239 683h22 M1245 691h10" class="wire" stroke="#4D5C67" style="stroke-width:2.5" />
+<circle cx="1300" cy="649" r="5" fill="white" stroke="#4D5C67" stroke-width="2.5"/>
+<text x="1130" y="413" font-size="22" fill="#4D5C67" style="fill:#4D5C67" text-anchor="end" font-weight="400" >GND</text>
+<text x="1130" y="454" font-size="22" fill="#4D5C67" style="fill:#4D5C67" text-anchor="end" font-weight="400" >GND</text>
+<path d="M1150 405h40v55 M1150 446h40" class="wire" stroke="#4D5C67" style="stroke-width:3" />
+<circle cx="1190" cy="446" r="5" fill="#4D5C67"/>
+<path d="M1190 460v14 M1173 474h34 M1179 482h22 M1185 490h10" class="wire" stroke="#4D5C67" style="stroke-width:2.5" />
+<circle cx="1150" cy="405" r="5" fill="white" stroke="#4D5C67" stroke-width="2.5"/>
+<circle cx="1150" cy="446" r="5" fill="white" stroke="#4D5C67" stroke-width="2.5"/>
+<path d="M1150 315H1205V193" class="wire" stroke="#BA571F" style="stroke-width:3" />
+<circle cx="1150" cy="315" r="5" fill="white" stroke="#BA571F" stroke-width="2.5"/>
+<path d="M1205 193v-15 M1196 188l9 -10 9 10" class="wire" stroke="#BA571F" style="stroke-width:2.5" />
+<text x="1205" y="167" font-size="21" fill="#BA571F" style="fill:#BA571F" text-anchor="middle" font-weight="600" >+VAMP</text>
+<text x="1227" y="226" font-size="18" fill="#BA571F" style="fill:#BA571F" text-anchor="start" font-weight="400" >5 V or 9 V</text>
+<text x="1130" y="322" font-size="20" fill="#BA571F" style="fill:#BA571F" text-anchor="end" font-weight="400" >VCC</text>
+<text x="970" y="472" font-size="15" fill="#60717E" style="fill:#60717E" text-anchor="middle" font-weight="400" >Screw terminals at left · input header at right</text>
+<path d="M1360 720V825" class="wire" stroke="#BA571F" style="stroke-width:3" />
+<circle cx="1360" cy="720" r="5" fill="white" stroke="#BA571F" stroke-width="2.5"/>
+<circle cx="1360" cy="825" r="5" fill="white" stroke="#BA571F" stroke-width="2.5"/>
+<text x="1360" y="707" font-size="19" fill="#BA571F" style="fill:#BA571F" text-anchor="middle" font-weight="400" >5 V</text>
+<path d="M1450 720V825" class="wire" stroke="#7560A6" style="stroke-width:3" />
+<circle cx="1450" cy="720" r="5" fill="white" stroke="#7560A6" stroke-width="2.5"/>
+<circle cx="1450" cy="825" r="5" fill="white" stroke="#7560A6" stroke-width="2.5"/>
+<text x="1450" y="707" font-size="19" fill="#7560A6" style="fill:#7560A6" text-anchor="middle" font-weight="400" >D+</text>
+<path d="M1550 720V825" class="wire" stroke="#7560A6" style="stroke-width:3" />
+<circle cx="1550" cy="720" r="5" fill="white" stroke="#7560A6" stroke-width="2.5"/>
+<circle cx="1550" cy="825" r="5" fill="white" stroke="#7560A6" stroke-width="2.5"/>
+<text x="1550" y="707" font-size="19" fill="#7560A6" style="fill:#7560A6" text-anchor="middle" font-weight="400" >D−</text>
+<path d="M1640 720V825" class="wire" stroke="#4D5C67" style="stroke-width:3" />
+<circle cx="1640" cy="720" r="5" fill="white" stroke="#4D5C67" stroke-width="2.5"/>
+<circle cx="1640" cy="825" r="5" fill="white" stroke="#4D5C67" stroke-width="2.5"/>
+<text x="1640" y="707" font-size="19" fill="#4D5C67" style="fill:#4D5C67" text-anchor="middle" font-weight="400" >GND</text>
+<text x="1340" y="790" font-size="18" fill="#60717E" style="fill:#60717E" text-anchor="end" font-weight="400" >USB port 1</text>
+<text x="1500" y="540" font-size="23" fill="#60717E" style="fill:#60717E" text-anchor="middle" font-weight="400" >USB audio device</text>
+<text x="1500" y="567" font-size="18" fill="#60717E" style="fill:#60717E" text-anchor="middle" font-weight="400" >Audio ground = USB ground</text>
+<path d="M490 960H255" class="wire" stroke="#147D70" style="stroke-width:3" />
+<circle cx="255" cy="960" r="5" fill="white" stroke="#147D70" stroke-width="2.5"/>
+<circle cx="195" cy="960" r="5" fill="white" stroke="#147D70" stroke-width="2.5"/>
+<path d="M195 960l42 -27" class="wire" stroke="#147D70" style="stroke-width:3" />
+<path d="M195 960H145v20" class="wire" stroke="#4D5C67" style="stroke-width:3" />
+<path d="M145 980v14 M128 994h34 M134 1002h22 M140 1010h10" class="wire" stroke="#4D5C67" style="stroke-width:2.5" />
+<text x="195" y="917" font-size="24" fill="#147D70" style="fill:#147D70" text-anchor="start" font-weight="600" >PTT1</text>
+<path d="M490 1100H255" class="wire" stroke="#147D70" style="stroke-width:3" />
+<circle cx="255" cy="1100" r="5" fill="white" stroke="#147D70" stroke-width="2.5"/>
+<circle cx="195" cy="1100" r="5" fill="white" stroke="#147D70" stroke-width="2.5"/>
+<path d="M195 1100l42 -27" class="wire" stroke="#147D70" style="stroke-width:3" />
+<path d="M195 1100H145v20" class="wire" stroke="#4D5C67" style="stroke-width:3" />
+<path d="M145 1120v14 M128 1134h34 M134 1142h22 M140 1150h10" class="wire" stroke="#4D5C67" style="stroke-width:2.5" />
+<text x="195" y="1057" font-size="24" fill="#147D70" style="fill:#147D70" text-anchor="start" font-weight="600" >PTT2</text>
+<text x="470" y="946" font-size="20" fill="#147D70" style="fill:#147D70" text-anchor="end" font-weight="600" class="label">3.5 mm SLEEVE</text>
+<text x="470" y="1086" font-size="20" fill="#147D70" style="fill:#147D70" text-anchor="end" font-weight="600" class="label">3.5 mm TIP</text>
+<path d="M490 960H760" class="wire" stroke="#147D70" style="stroke-width:3" />
+<circle cx="490" cy="960" r="5" fill="white" stroke="#147D70" stroke-width="2.5"/>
+<circle cx="760" cy="960" r="5" fill="white" stroke="#147D70" stroke-width="2.5"/>
+<text x="780" y="968" font-size="25" fill="#147D70" style="fill:#147D70" text-anchor="start" font-weight="600" >D2</text>
+<path d="M490 1100H760" class="wire" stroke="#147D70" style="stroke-width:3" />
+<circle cx="490" cy="1100" r="5" fill="white" stroke="#147D70" stroke-width="2.5"/>
+<circle cx="760" cy="1100" r="5" fill="white" stroke="#147D70" stroke-width="2.5"/>
+<text x="780" y="1108" font-size="25" fill="#147D70" style="fill:#147D70" text-anchor="start" font-weight="600" >D3</text>
+<path d="M570 825v-15 M561 820l9 -10 9 10" class="wire" stroke="#BA571F" style="stroke-width:2.5" />
+<text x="570" y="799" font-size="21" fill="#BA571F" style="fill:#BA571F" text-anchor="middle" font-weight="600" >+3V3</text>
+<path d="M570 825v20" class="wire" stroke="#147D70" style="stroke-width:3" />
+<path d="M570 845v12 l-9 7 18 12 -18 12 18 12 -18 12 9 7 v12" class="wire" stroke="#147D70" style="stroke-width:3" />
+<text x="592" y="897" font-size="22" fill="#147D70" style="fill:#147D70" text-anchor="start" font-weight="400" >10 kΩ</text>
+<path d="M570 931v29" class="wire" stroke="#147D70" style="stroke-width:3" />
+<circle cx="570" cy="960" r="5" fill="#147D70"/>
+<path d="M655 1010v-15 M646 1005l9 -10 9 10" class="wire" stroke="#BA571F" style="stroke-width:2.5" />
+<text x="655" y="984" font-size="21" fill="#BA571F" style="fill:#BA571F" text-anchor="middle" font-weight="600" >+3V3</text>
+<path d="M655 1010v4" class="wire" stroke="#147D70" style="stroke-width:3" />
+<path d="M655 1014v12 l-9 7 18 12 -18 12 18 12 -18 12 9 7 v12" class="wire" stroke="#147D70" style="stroke-width:3" />
+<text x="677" y="1066" font-size="22" fill="#147D70" style="fill:#147D70" text-anchor="start" font-weight="400" >10 kΩ</text>
+<circle cx="655" cy="1100" r="5" fill="#147D70"/>
+<path d="M1080 830v-40" class="wire" stroke="#BA571F" style="stroke-width:3" />
+<path d="M1080 790v-15 M1071 785l9 -10 9 10" class="wire" stroke="#BA571F" style="stroke-width:2.5" />
+<text x="1080" y="764" font-size="21" fill="#BA571F" style="fill:#BA571F" text-anchor="middle" font-weight="600" >+3V3</text>
+<circle cx="1080" cy="830" r="5" fill="white" stroke="#BA571F" stroke-width="2.5"/>
+<text x="1100" y="814" font-size="17" fill="#BA571F" style="fill:#BA571F" text-anchor="start" font-weight="400" >3V pin</text>
+<path d="M1150 925H1300" class="wire" stroke="#BA571F" style="stroke-width:3" />
+<circle cx="1150" cy="925" r="5" fill="white" stroke="#BA571F" stroke-width="2.5"/>
+<circle cx="1300" cy="925" r="5" fill="white" stroke="#BA571F" stroke-width="2.5"/>
+<text x="1130" y="933" font-size="20" fill="#BA571F" style="fill:#BA571F" text-anchor="end" font-weight="400" >5 V</text>
+<text x="1320" y="933" font-size="20" fill="#BA571F" style="fill:#BA571F" text-anchor="start" font-weight="400" >5 V</text>
+<path d="M1150 975H1300" class="wire" stroke="#7560A6" style="stroke-width:3" />
+<circle cx="1150" cy="975" r="5" fill="white" stroke="#7560A6" stroke-width="2.5"/>
+<circle cx="1300" cy="975" r="5" fill="white" stroke="#7560A6" stroke-width="2.5"/>
+<text x="1130" y="983" font-size="20" fill="#7560A6" style="fill:#7560A6" text-anchor="end" font-weight="400" >D+</text>
+<text x="1320" y="983" font-size="20" fill="#7560A6" style="fill:#7560A6" text-anchor="start" font-weight="400" >D+</text>
+<path d="M1150 1025H1300" class="wire" stroke="#7560A6" style="stroke-width:3" />
+<circle cx="1150" cy="1025" r="5" fill="white" stroke="#7560A6" stroke-width="2.5"/>
+<circle cx="1300" cy="1025" r="5" fill="white" stroke="#7560A6" stroke-width="2.5"/>
+<text x="1130" y="1033" font-size="20" fill="#7560A6" style="fill:#7560A6" text-anchor="end" font-weight="400" >D−</text>
+<text x="1320" y="1033" font-size="20" fill="#7560A6" style="fill:#7560A6" text-anchor="start" font-weight="400" >D−</text>
+<path d="M1150 1075H1300" class="wire" stroke="#4D5C67" style="stroke-width:3" />
+<circle cx="1150" cy="1075" r="5" fill="white" stroke="#4D5C67" stroke-width="2.5"/>
+<circle cx="1300" cy="1075" r="5" fill="white" stroke="#4D5C67" stroke-width="2.5"/>
+<text x="1130" y="1083" font-size="20" fill="#4D5C67" style="fill:#4D5C67" text-anchor="end" font-weight="400" >GND</text>
+<text x="1320" y="1083" font-size="20" fill="#4D5C67" style="fill:#4D5C67" text-anchor="start" font-weight="400" >GND</text>
+<text x="1200" y="1150" font-size="18" fill="#60717E" style="fill:#60717E" text-anchor="middle" font-weight="400" >USB port 2</text>
+<text x="800" y="1032" font-size="19" fill="#60717E" style="fill:#60717E" text-anchor="start" font-weight="400" >Digital inputs</text>
+<text x="800" y="1060" font-size="18" fill="#60717E" style="fill:#60717E" text-anchor="start" font-weight="400" >LOW = pressed</text>
+<text x="940" y="1145" font-size="18" fill="#60717E" style="fill:#60717E" text-anchor="middle" font-weight="400" >Internal pulls disabled</text>
+<text x="1420" y="984" font-size="21" fill="#60717E" style="fill:#60717E" text-anchor="start" font-weight="400" >Two independent</text>
+<text x="1420" y="1018" font-size="21" fill="#60717E" style="fill:#60717E" text-anchor="start" font-weight="400" >USB devices</text>
+<text x="1490" y="1138" font-size="17" fill="#60717E" style="fill:#60717E" text-anchor="middle" font-weight="400" >Common 5 V supply and ground</text>
+<path d="M1700 925H1820" class="wire" stroke="#BA571F" style="stroke-width:3" />
+<circle cx="1700" cy="925" r="5" fill="white" stroke="#BA571F" stroke-width="2.5"/>
+<circle cx="1820" cy="925" r="5" fill="white" stroke="#BA571F" stroke-width="2.5"/>
+<text x="1680" y="933" font-size="20" fill="#BA571F" style="fill:#BA571F" text-anchor="end" font-weight="400" >5 V</text>
+<text x="1840" y="933" font-size="20" fill="#BA571F" style="fill:#BA571F" text-anchor="start" font-weight="400" >5 V</text>
+<path d="M1700 975H1820" class="wire" stroke="#7560A6" style="stroke-width:3" />
+<circle cx="1700" cy="975" r="5" fill="white" stroke="#7560A6" stroke-width="2.5"/>
+<circle cx="1820" cy="975" r="5" fill="white" stroke="#7560A6" stroke-width="2.5"/>
+<text x="1680" y="983" font-size="20" fill="#7560A6" style="fill:#7560A6" text-anchor="end" font-weight="400" >D+</text>
+<text x="1840" y="983" font-size="20" fill="#7560A6" style="fill:#7560A6" text-anchor="start" font-weight="400" >D+</text>
+<path d="M1700 1025H1820" class="wire" stroke="#7560A6" style="stroke-width:3" />
+<circle cx="1700" cy="1025" r="5" fill="white" stroke="#7560A6" stroke-width="2.5"/>
+<circle cx="1820" cy="1025" r="5" fill="white" stroke="#7560A6" stroke-width="2.5"/>
+<text x="1680" y="1033" font-size="20" fill="#7560A6" style="fill:#7560A6" text-anchor="end" font-weight="400" >D−</text>
+<text x="1840" y="1033" font-size="20" fill="#7560A6" style="fill:#7560A6" text-anchor="start" font-weight="400" >D−</text>
+<path d="M1700 1075H1820" class="wire" stroke="#4D5C67" style="stroke-width:3" />
+<circle cx="1700" cy="1075" r="5" fill="white" stroke="#4D5C67" stroke-width="2.5"/>
+<circle cx="1820" cy="1075" r="5" fill="white" stroke="#4D5C67" stroke-width="2.5"/>
+<text x="1680" y="1083" font-size="20" fill="#4D5C67" style="fill:#4D5C67" text-anchor="end" font-weight="400" >GND</text>
+<text x="1840" y="1083" font-size="20" fill="#4D5C67" style="fill:#4D5C67" text-anchor="start" font-weight="400" >GND</text>
+<text x="1760" y="1165" font-size="18" fill="#60717E" style="fill:#60717E" text-anchor="middle" font-weight="400" >Upstream USB</text>
+<path d="M70 1240H1930" class="wire" stroke="#A5B3BE" style="stroke-width:1.5" />
+<path d="M80 1280h42" class="wire" stroke="#236AAB" style="stroke-width:4" />
+<text x="135" y="1288" font-size="21" fill="#236AAB" style="fill:#236AAB" text-anchor="start" font-weight="400" >Audio</text>
+<path d="M280 1280h42" class="wire" stroke="#147D70" style="stroke-width:4" />
+<text x="335" y="1288" font-size="21" fill="#147D70" style="fill:#147D70" text-anchor="start" font-weight="400" >PTT</text>
+<path d="M460 1280h42" class="wire" stroke="#7560A6" style="stroke-width:4" />
+<text x="515" y="1288" font-size="21" fill="#7560A6" style="fill:#7560A6" text-anchor="start" font-weight="400" >USB data</text>
+<path d="M720 1280h42" class="wire" stroke="#BA571F" style="stroke-width:4" />
+<text x="775" y="1288" font-size="21" fill="#BA571F" style="fill:#BA571F" text-anchor="start" font-weight="400" >Power</text>
+<path d="M930 1280h42" class="wire" stroke="#4D5C67" style="stroke-width:4" />
+<text x="985" y="1288" font-size="21" fill="#4D5C67" style="fill:#4D5C67" text-anchor="start" font-weight="400" >Common ground</text>
+<text x="80" y="1340" font-size="18" fill="#60717E" style="fill:#60717E" text-anchor="start" font-weight="600" >POWER</text>
+<text x="210" y="1340" font-size="20" fill="#1C2C38" style="fill:#1C2C38" text-anchor="start" font-weight="400" >USB 5 V supplies the hub, soundcard and KB2040 USB power input. +3V3 comes from the KB2040 3V pin.</text>
+<text x="210" y="1375" font-size="20" fill="#1C2C38" style="fill:#1C2C38" text-anchor="start" font-weight="400" >Connect +VAMP to USB 5 V, or to the optional 9 V boost output. All GND symbols are electrically connected.</text>
+<text x="80" y="1421" font-size="18" fill="#60717E" style="fill:#60717E" text-anchor="start" font-weight="600" >PTT</text>
+<text x="210" y="1421" font-size="20" fill="#1C2C38" style="fill:#1C2C38" text-anchor="start" font-weight="400" >Both switches close to common ground. Each GPIO has its own 10 kΩ pull-up. The 3.5 mm tip is PTT2.</text>
+</svg>
