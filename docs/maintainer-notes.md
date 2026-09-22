@@ -27,7 +27,7 @@ Photos are unaltered copies under descriptive filenames. `IMG_8585.jpeg` (the Am
 
 ## Remaining details for a public release
 
-1. The `enclosure/` folder now includes the body, lid, and mounting plate/standoff STLs, plus a Bambu Lab P1S 3MF project. See [enclosure notes](enclosure.md). Editable source CAD and exact fastener specifications remain to be documented.
+1. The `enclosure/` folder includes the body, lid, and mounting plate/standoff STLs, plus a Bambu Lab P1S 3MF project. See [enclosure notes](enclosure.md). Editable source CAD and exact fastener specifications remain to be documented.
 2. Record the final USB audio adapter and connector/cable SKUs. The BOM already gives functional requirements and labels the earlier audio-adapter reference accurately.
 3. Record the final working Claude Code / Windows Terminal / Teams configuration, including versions. Do not promote the Ctrl+Space example to a tested recipe without verifying press, hold, and release.
 4. Choose licenses for firmware, documentation, photographs, and any future hardware/CAD files before advertising the repository as open source. No license grant has been invented here.
