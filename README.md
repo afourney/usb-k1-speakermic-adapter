@@ -10,6 +10,9 @@ It also makes a satisfying physical interface for [Claude Code `/voice`](#claude
 
 *Ready to talk: the adapter and a BTECH QHM22D running Cabin Fever x86. Building with this mic? Read the [BTECH-specific wiring checks](docs/btech-qhm22d.md) first.*
 
+## Video demo
+[![Play Cabin Fever x86 with a real radio speaker mic!](https://raw.githubusercontent.com/afourney/usb-k1-speakermic-adapter/main/docs/images/video_thumbnail_k1.png)](https://www.youtube.com/watch?v=ixthcVkOpio)
+
 ## What's in the box?
 
 The useful trick is to let ordinary USB devices do most of the work. A USB sound card handles microphone input and audio output. An LM386 module gives the little speaker enough drive to be heard. An Adafruit KB2040 running CircuitPython watches the two PTT buttons and presents them to the computer as keyboard keys. A tiny USB hub brings the audio and keyboard devices out through one cable. The supplied firmware sends **F13** from the main button and **Ctrl+Space** from the secondary button; both bindings are editable.
