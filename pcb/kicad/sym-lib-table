@@ -1,0 +1,1 @@
+(sym_lib_table (lib (name "Carrier")(type "KiCad")(uri "${KIPRJMOD}/Carrier.kicad_sym")(options "")(descr "Carrier module interfaces")))

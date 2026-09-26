@@ -1,0 +1,15 @@
+# KiCad machine-local state and automatic backups
+*.kicad_prl
+*.lck
+~*
+*-backups/
+.history/
+*.bak
+*.kicad_pcb-bak
+*.kicad_sch-bak
+
+# Python and operating-system caches
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

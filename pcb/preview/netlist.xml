@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="E">
+  <design>
+    <source>C:\Users\adamfo\.codex\.chatgpt-projects\g-p-6a6c3b8413188191a12e72dae32a7332\carrier-rev-c\kicad\k1-carrier-rev-c.kicad_sch</source>
+    <date>2026-09-25T22:59:00</date>
+    <tool>Eeschema 10.0.6</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>k1-carrier-rev-c.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="J1">
+      <value>USB_A_67643_0910</value>
+      <footprint>Carrier:USB_A_Molex_67643_Horizontal</footprint>
+      <fields>
+        <field name="Footprint">Carrier:USB_A_Molex_67643_Horizontal</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="USB_A_67643_0910" description=""/>
+      <property name="Sheetname" value="k1-carrier-rev-c"/>
+      <property name="Sheetfile" value="k1-carrier-rev-c.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>ec845aaa-e32b-4d39-b837-8b977cd5dc6e</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="SH"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J2">
+      <value>SOUNDCARD_MIC</value>
+      <footprint>Carrier:Wire_2</footprint>
+      <fields>
+        <field name="Footprint">Carrier:Wire_2</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="SOUNDCARD_MIC" description=""/>
+      <property name="Sheetname" value="k1-carrier-rev-c"/>
+      <property name="Sheetfile" value="k1-carrier-rev-c.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>de2c3dc8-e4a4-437b-bd78-34bc25960268</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J3">
+      <value>SOUNDCARD_HEADPHONE</value>
+      <footprint>Carrier:Wire_2</footprint>
+      <fields>
+        <field name="Footprint">Carrier:Wire_2</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="SOUNDCARD_HEADPHONE" description=""/>
+      <property name="Sheetname" value="k1-carrier-rev-c"/>
+      <property name="Sheetfile" value="k1-carrier-rev-c.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>458a9716-8c33-4f1f-b016-157616e4e96f</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J4">
+      <value>K1_MICROFIT_43045_0600</value>
+      <footprint>Carrier:Molex_Micro-Fit_3.0_43045-0600_2x03_P3.00mm_Horizontal</footprint>
+      <fields>
+        <field name="Footprint">Carrier:Molex_Micro-Fit_3.0_43045-0600_2x03_P3.00mm_Horizontal</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="K1_MICROFIT_43045_0600" description=""/>
+      <property name="Sheetname" value="k1-carrier-rev-c"/>
+      <property name="Sheetfile" value="k1-carrier-rev-c.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>c1bb83be-e24f-4032-84e7-ec00676cebc5</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="5"/>
+            <pin num="6"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J6">
+      <value>LM386_VCC_IN_GND_GND</value>
+      <footprint>Carrier:Wire_4</footprint>
+      <fields>
+        <field name="Footprint">Carrier:Wire_4</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LM386_VCC_IN_GND_GND" description=""/>
+      <property name="Sheetname" value="k1-carrier-rev-c"/>
+      <property name="Sheetfile" value="k1-carrier-rev-c.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>14c11d8f-dc66-4c5b-b068-193974bde044</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="4"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J8">
+      <value>LM386_OUTPUT_AC</value>
+      <footprint>Carrier:Wire_2</footprint>
+      <fields>
+        <field name="Footprint">Carrier:Wire_2</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="LM386_OUTPUT_AC" description=""/>
+      <property name="Sheetname" value="k1-carrier-rev-c"/>
+      <property name="Sheetfile" value="k1-carrier-rev-c.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>fe7230d9-11f9-4f16-b602-6146e85c9bb2</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R1">
+      <value>10k</value>
+      <footprint>Carrier:R_Axial_7.62</footprint>
+      <fields>
+        <field name="Footprint">Carrier:R_Axial_7.62</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="10k_R1" description=""/>
+      <property name="Sheetname" value="k1-carrier-rev-c"/>
+      <property name="Sheetfile" value="k1-carrier-rev-c.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>b63f1007-19ff-4e1d-88d7-2b3e7e680c60</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R2">
+      <value>10k</value>
+      <footprint>Carrier:R_Axial_7.62</footprint>
+      <fields>
+        <field name="Footprint">Carrier:R_Axial_7.62</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="10k_R2" description=""/>
+      <property name="Sheetname" value="k1-carrier-rev-c"/>
+      <property name="Sheetfile" value="k1-carrier-rev-c.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>d735f168-19b6-45e0-a370-7541e6df1910</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="U1">
+      <value>KB2040</value>
+      <footprint>Carrier:KB2040</footprint>
+      <fields>
+        <field name="Footprint">Carrier:KB2040</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="KB2040" description=""/>
+      <property name="Sheetname" value="k1-carrier-rev-c"/>
+      <property name="Sheetfile" value="k1-carrier-rev-c.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>1bc04a84-d248-41a7-973d-4de80214002c</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="5"/>
+            <pin num="6"/>
+            <pin num="7"/>
+            <pin num="8"/>
+            <pin num="9"/>
+            <pin num="10"/>
+            <pin num="11"/>
+            <pin num="12"/>
+            <pin num="13"/>
+            <pin num="14"/>
+            <pin num="15"/>
+            <pin num="16"/>
+            <pin num="17"/>
+            <pin num="18"/>
+            <pin num="19"/>
+            <pin num="20"/>
+            <pin num="21"/>
+            <pin num="22"/>
+            <pin num="23"/>
+            <pin num="24"/>
+            <pin num="25"/>
+            <pin num="26"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="U2">
+      <value>CH334F_5999</value>
+      <footprint>Carrier:CH334F_5999</footprint>
+      <fields>
+        <field name="Footprint">Carrier:CH334F_5999</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Carrier" part="CH334F_5999" description=""/>
+      <property name="Sheetname" value="k1-carrier-rev-c"/>
+      <property name="Sheetfile" value="k1-carrier-rev-c.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>5f355113-56e2-4148-b060-1bec76024bb7</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="5"/>
+            <pin num="6"/>
+            <pin num="7"/>
+            <pin num="8"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="Carrier" part="10k_R1">
+      <fields>
+        <field name="Reference">R1</field>
+        <field name="Value">10k_R1</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="10k_R2">
+      <fields>
+        <field name="Reference">R2</field>
+        <field name="Value">10k_R2</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="CH334F_5999">
+      <fields>
+        <field name="Reference">U2</field>
+        <field name="Value">CH334F_5999</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="P1_5V" type="passive"/>
+        <pin num="2" name="P1_D+" type="passive"/>
+        <pin num="3" name="P1_D-" type="passive"/>
+        <pin num="4" name="P1_GND" type="passive"/>
+        <pin num="5" name="P2_5V" type="passive"/>
+        <pin num="6" name="P2_D+" type="passive"/>
+        <pin num="7" name="P2_D-" type="passive"/>
+        <pin num="8" name="P2_GND" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="K1_MICROFIT_43045_0600">
+      <fields>
+        <field name="Reference">J4</field>
+        <field name="Value">K1_MICROFIT_43045_0600</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+        <pin num="3" name="3" type="passive"/>
+        <pin num="4" name="4" type="passive"/>
+        <pin num="5" name="5" type="passive"/>
+        <pin num="6" name="6" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="KB2040">
+      <fields>
+        <field name="Reference">U1</field>
+        <field name="Value">KB2040</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="D10" type="passive"/>
+        <pin num="2" name="MOSI" type="passive"/>
+        <pin num="3" name="MISO" type="passive"/>
+        <pin num="4" name="CLK" type="passive"/>
+        <pin num="5" name="A0" type="passive"/>
+        <pin num="6" name="A1" type="passive"/>
+        <pin num="7" name="A2" type="passive"/>
+        <pin num="8" name="A3" type="passive"/>
+        <pin num="9" name="3V" type="passive"/>
+        <pin num="10" name="RST" type="passive"/>
+        <pin num="11" name="GND" type="passive"/>
+        <pin num="12" name="RAW" type="passive"/>
+        <pin num="13" name="D-" type="passive"/>
+        <pin num="14" name="D+" type="passive"/>
+        <pin num="15" name="TX" type="passive"/>
+        <pin num="16" name="RX" type="passive"/>
+        <pin num="17" name="GND" type="passive"/>
+        <pin num="18" name="GND" type="passive"/>
+        <pin num="19" name="D2" type="passive"/>
+        <pin num="20" name="D3" type="passive"/>
+        <pin num="21" name="D4" type="passive"/>
+        <pin num="22" name="D5" type="passive"/>
+        <pin num="23" name="D6" type="passive"/>
+        <pin num="24" name="D7" type="passive"/>
+        <pin num="25" name="D8" type="passive"/>
+        <pin num="26" name="D9" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LM386_OUTPUT_AC">
+      <fields>
+        <field name="Reference">J8</field>
+        <field name="Value">LM386_OUTPUT_AC</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="LM386_VCC_IN_GND_GND">
+      <fields>
+        <field name="Reference">J6</field>
+        <field name="Value">LM386_VCC_IN_GND_GND</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+        <pin num="3" name="3" type="passive"/>
+        <pin num="4" name="4" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="SOUNDCARD_HEADPHONE">
+      <fields>
+        <field name="Reference">J3</field>
+        <field name="Value">SOUNDCARD_HEADPHONE</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="SOUNDCARD_MIC">
+      <fields>
+        <field name="Reference">J2</field>
+        <field name="Value">SOUNDCARD_MIC</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Carrier" part="USB_A_67643_0910">
+      <fields>
+        <field name="Reference">J1</field>
+        <field name="Value">USB_A_67643_0910</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+        <pin num="3" name="3" type="passive"/>
+        <pin num="4" name="4" type="passive"/>
+        <pin num="SH" name="SH" type="passive"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="Carrier">
+      <uri>${KIPRJMOD}/Carrier.kicad_sym</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="/+3V3" class="Default">
+      <node ref="R1" pin="1" pinfunction="1_1" pintype="passive"/>
+      <node ref="R2" pin="1" pinfunction="1_1" pintype="passive"/>
+      <node ref="U1" pin="9" pinfunction="3V_9" pintype="passive"/>
+    </net>
+    <net code="2" name="/+5V" class="Default">
+      <node ref="J1" pin="1" pinfunction="1_1" pintype="passive"/>
+      <node ref="J6" pin="1" pinfunction="1_1" pintype="passive"/>
+      <node ref="U1" pin="12" pinfunction="RAW_12" pintype="passive"/>
+      <node ref="U2" pin="1" pinfunction="P1_5V_1" pintype="passive"/>
+      <node ref="U2" pin="5" pinfunction="P2_5V_5" pintype="passive"/>
+    </net>
+    <net code="3" name="/GND" class="Default">
+      <node ref="J1" pin="4" pinfunction="4_4" pintype="passive"/>
+      <node ref="J1" pin="SH" pinfunction="SH_SH" pintype="passive"/>
+      <node ref="J2" pin="2" pinfunction="2_2" pintype="passive"/>
+      <node ref="J3" pin="2" pinfunction="2_2" pintype="passive"/>
+      <node ref="J4" pin="6" pinfunction="6_6" pintype="passive"/>
+      <node ref="J6" pin="3" pinfunction="3_3" pintype="passive"/>
+      <node ref="J6" pin="4" pinfunction="4_4" pintype="passive"/>
+      <node ref="J8" pin="2" pinfunction="2_2" pintype="passive"/>
+      <node ref="U1" pin="11" pinfunction="GND_11" pintype="passive"/>
+      <node ref="U1" pin="17" pinfunction="GND_17" pintype="passive"/>
+      <node ref="U1" pin="18" pinfunction="GND_18" pintype="passive"/>
+      <node ref="U2" pin="4" pinfunction="P1_GND_4" pintype="passive"/>
+      <node ref="U2" pin="8" pinfunction="P2_GND_8" pintype="passive"/>
+    </net>
+    <net code="4" name="/HP_LEFT" class="Default">
+      <node ref="J3" pin="1" pinfunction="1_1" pintype="passive"/>
+      <node ref="J6" pin="2" pinfunction="2_2" pintype="passive"/>
+    </net>
+    <net code="5" name="/MIC" class="Default">
+      <node ref="J2" pin="1" pinfunction="1_1" pintype="passive"/>
+      <node ref="J4" pin="2" pinfunction="2_2" pintype="passive"/>
+    </net>
+    <net code="6" name="/PTT1" class="Default">
+      <node ref="J4" pin="3" pinfunction="3_3" pintype="passive"/>
+      <node ref="R1" pin="2" pinfunction="2_2" pintype="passive"/>
+      <node ref="U1" pin="19" pinfunction="D2_19" pintype="passive"/>
+    </net>
+    <net code="7" name="/PTT2" class="Default">
+      <node ref="J4" pin="1" pinfunction="1_1" pintype="passive"/>
+      <node ref="R2" pin="2" pinfunction="2_2" pintype="passive"/>
+      <node ref="U1" pin="20" pinfunction="D3_20" pintype="passive"/>
+    </net>
+    <net code="8" name="/SPK" class="Default">
+      <node ref="J4" pin="4" pinfunction="4_4" pintype="passive"/>
+      <node ref="J8" pin="1" pinfunction="1_1" pintype="passive"/>
+    </net>
+    <net code="9" name="/USB_AUDIO_N" class="Default">
+      <node ref="J1" pin="2" pinfunction="2_2" pintype="passive"/>
+      <node ref="U2" pin="7" pinfunction="P2_D-_7" pintype="passive"/>
+    </net>
+    <net code="10" name="/USB_AUDIO_P" class="Default">
+      <node ref="J1" pin="3" pinfunction="3_3" pintype="passive"/>
+      <node ref="U2" pin="6" pinfunction="P2_D+_6" pintype="passive"/>
+    </net>
+    <net code="11" name="/USB_KB_N" class="Default">
+      <node ref="U1" pin="13" pinfunction="D-_13" pintype="passive"/>
+      <node ref="U2" pin="3" pinfunction="P1_D-_3" pintype="passive"/>
+    </net>
+    <net code="12" name="/USB_KB_P" class="Default">
+      <node ref="U1" pin="14" pinfunction="D+_14" pintype="passive"/>
+      <node ref="U2" pin="2" pinfunction="P1_D+_2" pintype="passive"/>
+    </net>
+    <net code="13" name="unconnected-(J4-Pad5)" class="Default">
+      <node ref="J4" pin="5" pinfunction="5_5" pintype="passive+no_connect"/>
+    </net>
+    <net code="14" name="unconnected-(U1-A0-Pad5)" class="Default">
+      <node ref="U1" pin="5" pinfunction="A0_5" pintype="passive+no_connect"/>
+    </net>
+    <net code="15" name="unconnected-(U1-A1-Pad6)" class="Default">
+      <node ref="U1" pin="6" pinfunction="A1_6" pintype="passive+no_connect"/>
+    </net>
+    <net code="16" name="unconnected-(U1-A2-Pad7)" class="Default">
+      <node ref="U1" pin="7" pinfunction="A2_7" pintype="passive+no_connect"/>
+    </net>
+    <net code="17" name="unconnected-(U1-A3-Pad8)" class="Default">
+      <node ref="U1" pin="8" pinfunction="A3_8" pintype="passive+no_connect"/>
+    </net>
+    <net code="18" name="unconnected-(U1-CLK-Pad4)" class="Default">
+      <node ref="U1" pin="4" pinfunction="CLK_4" pintype="passive+no_connect"/>
+    </net>
+    <net code="19" name="unconnected-(U1-D4-Pad21)" class="Default">
+      <node ref="U1" pin="21" pinfunction="D4_21" pintype="passive+no_connect"/>
+    </net>
+    <net code="20" name="unconnected-(U1-D5-Pad22)" class="Default">
+      <node ref="U1" pin="22" pinfunction="D5_22" pintype="passive+no_connect"/>
+    </net>
+    <net code="21" name="unconnected-(U1-D6-Pad23)" class="Default">
+      <node ref="U1" pin="23" pinfunction="D6_23" pintype="passive+no_connect"/>
+    </net>
+    <net code="22" name="unconnected-(U1-D7-Pad24)" class="Default">
+      <node ref="U1" pin="24" pinfunction="D7_24" pintype="passive+no_connect"/>
+    </net>
+    <net code="23" name="unconnected-(U1-D8-Pad25)" class="Default">
+      <node ref="U1" pin="25" pinfunction="D8_25" pintype="passive+no_connect"/>
+    </net>
+    <net code="24" name="unconnected-(U1-D9-Pad26)" class="Default">
+      <node ref="U1" pin="26" pinfunction="D9_26" pintype="passive+no_connect"/>
+    </net>
+    <net code="25" name="unconnected-(U1-D10-Pad1)" class="Default">
+      <node ref="U1" pin="1" pinfunction="D10_1" pintype="passive+no_connect"/>
+    </net>
+    <net code="26" name="unconnected-(U1-MISO-Pad3)" class="Default">
+      <node ref="U1" pin="3" pinfunction="MISO_3" pintype="passive+no_connect"/>
+    </net>
+    <net code="27" name="unconnected-(U1-MOSI-Pad2)" class="Default">
+      <node ref="U1" pin="2" pinfunction="MOSI_2" pintype="passive+no_connect"/>
+    </net>
+    <net code="28" name="unconnected-(U1-RST-Pad10)" class="Default">
+      <node ref="U1" pin="10" pinfunction="RST_10" pintype="passive+no_connect"/>
+    </net>
+    <net code="29" name="unconnected-(U1-RX-Pad16)" class="Default">
+      <node ref="U1" pin="16" pinfunction="RX_16" pintype="passive+no_connect"/>
+    </net>
+    <net code="30" name="unconnected-(U1-TX-Pad15)" class="Default">
+      <node ref="U1" pin="15" pinfunction="TX_15" pintype="passive+no_connect"/>
+    </net>
+  </nets>
+</export>
